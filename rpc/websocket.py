@@ -6,10 +6,11 @@ import daemon.classes as classes
 class RPCWS:
   id: int
   client: ClientConnection
+  prefix: str
 
-  def __init__(self, url: str, headers = {}) -> None:
+  def __init__(self, client: ClientConnection) -> None:
     self.id = 0
-    self.client = connect(url, additional_headers=headers)
+    self.client = client
     
   def __createRequestMethod(self, method: str, params = None):
     self.id += 1
@@ -20,7 +21,7 @@ class RPCWS:
     return json.dumps(data)
 
   def send(self, method, params = None):
-    sendData = self.__createRequestMethod(method=method, params=params)
+    sendData = self.__createRequestMethod(method=self.prefix+method, params=params)
     self.client.send(sendData)
     
     recvData = self.client.recv()
