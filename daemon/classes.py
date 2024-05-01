@@ -23,3 +23,29 @@ class GetBlockTemplateResult:
   height: int
   topoheight: int
   difficulty: str
+  
+@dataclass
+class GetBlockAtTopoheightParams:
+  topoheight: int
+  include_txs: bool
+  
+@dataclass
+class Block:
+  block_type: str
+  cumulative_difficulty: str
+  difficulty: str
+  extra_nonce: str
+  hash: str
+  height: int
+  miner: str
+  nonce: int
+  reward: int
+  supply: int
+  timestamp: int
+  tips: list[str]
+  topoheight: int
+  total_fees: int | None
+  total_size_in_bytes: int
+  txs_hashes: list[str]
+  version: int
+  
