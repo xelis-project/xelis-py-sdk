@@ -64,3 +64,16 @@ class DaemonWS(RPCWS):
   def getNonceAtTopoheight(self, params: classes.GetNonceAtTopoheightParams):
     data = self.send(method=methods.GetNonceAtTopoheight, params=vars(params))
     return from_dict(data_class=classes.VersionedNonce, data=data)
+  
+  def getBalance(self, params: classes.GetBalanceParams):
+    data = self.send(method=methods.GetBalance, params=vars(params))
+    return from_dict(data_class=classes.GetBalanceResult, data=data)
+  
+  def hasBalance(self, params: classes.GetBalanceParams):
+    data = self.send(method=methods.HasBalance, params=vars(params))
+    exist = data["exist"]
+    return bool(exist)
+  
+  def getBalanceAtTopoheight(self, params: classes.GetBalanceAtTopoheightParams):
+    data = self.send(method=methods.GetBalanceAtTopoheight, params=vars(params))
+    return from_dict(data_class=classes.VersionedBalance, data=data)

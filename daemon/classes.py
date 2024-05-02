@@ -60,6 +60,34 @@ class GetNonceAtTopoheightParams:
   topoheight: int
   
 @dataclass
+class GetBalanceParams:
+  address: str
+  asset: str
+  
+@dataclass
+class GetBalanceAtTopoheightParams:
+  address: str
+  asset: str
+  topoheight: int
+
+@dataclass
+class EncryptedBalance:
+  commitment: list[int]
+  handle: list[int]
+  
+@dataclass
+class VersionedBalance:
+  balance_type: str # input, output or both
+  final_balance: EncryptedBalance
+  output_balance: EncryptedBalance | None
+  previous_topoheight: int | None
+
+@dataclass
+class GetBalanceResult:
+  version: VersionedBalance
+  topoheight: int
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str

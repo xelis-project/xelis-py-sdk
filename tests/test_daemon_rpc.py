@@ -1,6 +1,6 @@
 import daemon.classes as classes
 from daemon.http import DaemonRPC
-from config.module import TESTNET_NODE_RPC, MAINNET_NODE_RPC
+from config.module import TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
 
 testnetDaemon = DaemonRPC(url=TESTNET_NODE_RPC)
 mainnetDaemon = DaemonRPC(url=MAINNET_NODE_RPC)
@@ -69,4 +69,19 @@ def test_hasNonce():
 def test_getNonceAtTopoheight():
   params = classes.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632)
   result = testnetDaemon.getNonceAtTopoheight(params=params)
+  print(result)
+  
+def test_getBalance():
+  params = classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
+  result = testnetDaemon.getBalance(params=params)
+  print(result)
+  
+def test_hasBalance():
+  params = classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
+  result = testnetDaemon.hasBalance(params=params)
+  print(result)
+  
+def test_getBalancecAtTopoheight():
+  params = classes.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632)
+  result = testnetDaemon.getBalanceAtTopoheight(params=params)
   print(result)

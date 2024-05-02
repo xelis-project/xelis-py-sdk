@@ -1,4 +1,4 @@
-from config.module import TESTNET_NODE_WS
+from config.module import TESTNET_NODE_WS, XELIS_ASSET
 from daemon.websocket import DaemonWS
 import daemon.classes as classes
 
@@ -79,5 +79,23 @@ def test_hasNonce():
 def test_getNonceAtTopoheight():
   daemon = DaemonWS(url=TESTNET_NODE_WS)
   data = daemon.getNonceAtTopoheight(params=classes.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632))
+  print(data)
+  daemon.close()
+  
+def test_getBalance():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getBalance(params=classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET))
+  print(data)
+  daemon.close()
+  
+def test_hasBalance():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.hasBalance(params=classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET))
+  print(data)
+  daemon.close()
+  
+def test_getBalanceAtTopoheight():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getBalanceAtTopoheight(params=classes.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632))
   print(data)
   daemon.close()
