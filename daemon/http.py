@@ -31,3 +31,8 @@ class DaemonRPC(RPCHttp):
   def getBlockAtTopoheight(self, params: classes.GetBlockAtTopoheightParams):
     data = self.fetch(method=methods.GetBlockAtTopoheight, params=vars(params))
     return from_dict(data_class=classes.Block, data=data)
+  
+  def getBlocksAtHeight(self, params: classes.GetBlocksAtHeightParams):
+    data = self.fetch(method=methods.GetBlocksAtHeight, params=vars(params))
+    items = [from_dict(data_class=classes.Block, data=item) for item in data]
+    return items

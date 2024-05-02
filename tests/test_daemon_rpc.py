@@ -1,4 +1,4 @@
-from daemon.classes import GetBlockAtTopoheightParams
+import daemon.classes as classes
 from daemon.http import DaemonRPC
 from config.module import TESTNET_NODE_RPC, MAINNET_NODE_RPC
 
@@ -22,11 +22,28 @@ def test_getVersion():
   version = testnetDaemon.getVersion()
   print(version)
   
+def test_getHeight():
+  result = testnetDaemon.getHeight()
+  print(result)
+  
+def test_getTopoheight():
+  result = testnetDaemon.getTopoheight()
+  print(result)
+  
+def test_getStableheight():
+  result = testnetDaemon.getStableheight()
+  print(result)
+  
 def test_getBlockTemplate():
   result = testnetDaemon.getBlockTemplate(address=TESTNET_ADDR)
   print(result)
   
 def test_getBlockAtTopoheight():
-  params = GetBlockAtTopoheightParams(topoheight=0, include_txs=False)
+  params = classes.GetBlockAtTopoheightParams(topoheight=0, include_txs=False)
   result = testnetDaemon.getBlockAtTopoheight(params=params)
+  print(result)
+
+def test_getBlocksAtHeight():
+  params = classes.GetBlocksAtHeightParams(height=0, include_txs=False)
+  result = testnetDaemon.getBlocksAtHeight(params=params)
   print(result)

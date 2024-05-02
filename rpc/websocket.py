@@ -11,6 +11,7 @@ class RPCWS:
   def __init__(self, client: ClientConnection) -> None:
     self.id = 0
     self.client = client
+    self.prefix = ""
     
   def __createRequestMethod(self, method: str, params = None):
     self.id += 1

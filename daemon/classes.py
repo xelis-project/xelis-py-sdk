@@ -30,6 +30,11 @@ class GetBlockAtTopoheightParams:
   include_txs: bool
   
 @dataclass
+class GetBlocksAtHeightParams:
+  height: int
+  include_txs: bool
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str
@@ -48,4 +53,3 @@ class Block:
   total_size_in_bytes: int
   txs_hashes: list[str]
   version: int
-  
