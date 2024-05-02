@@ -53,3 +53,7 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.HasNonce, params={ "address": address })
     exist = data["exist"]
     return bool(exist)
+  
+  def getNonceAtTopoheight(self, params: classes.GetNonceAtTopoheightParams):
+    data = self.fetch(method=methods.GetNonceAtTopoheight, params=vars(params))
+    return from_dict(data_class=classes.VersionedNonce, data=data)

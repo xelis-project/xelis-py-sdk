@@ -75,3 +75,9 @@ def test_hasNonce():
   data = daemon.hasNonce(address=TESTNET_ADDR)
   print(data)
   daemon.close()
+  
+def test_getNonceAtTopoheight():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getNonceAtTopoheight(params=classes.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632))
+  print(data)
+  daemon.close()

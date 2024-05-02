@@ -50,6 +50,16 @@ class GetNonceResult:
   topoheight: int
   
 @dataclass
+class VersionedNonce:
+  nonce: int
+  previous_topoheight: int | None
+  
+@dataclass
+class GetNonceAtTopoheightParams:
+  address: str
+  topoheight: int
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str

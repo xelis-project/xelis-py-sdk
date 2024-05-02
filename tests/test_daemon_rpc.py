@@ -65,3 +65,8 @@ def test_getNonce():
 def test_hasNonce():
   result = testnetDaemon.hasNonce(address=TESTNET_ADDR)
   print(result)
+  
+def test_getNonceAtTopoheight():
+  params = classes.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632)
+  result = testnetDaemon.getNonceAtTopoheight(params=params)
+  print(result)
