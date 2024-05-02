@@ -91,3 +91,17 @@ class DaemonRPC(RPCHttp):
   def countAccounts(self):
     data = self.fetch(method=methods.CountAccounts)
     return int(data)
+
+  def getTips(self):
+    data = self.fetch(method=methods.GetTips)
+    items = [str(item) for item in data]
+    return items
+  
+  def p2pStatus(self):
+    data = self.fetch(method=methods.P2PStatus)
+    return from_dict(data_class=classes.P2PStatusResult, data=data)
+  
+  def getDAGOrder(self, params: classes.GetTopoheightRangeParams):
+    data = self.fetch(method=methods.GetDAGOrder, params=vars(params))
+    items = [str(item) for item in data]
+    return items

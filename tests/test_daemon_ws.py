@@ -129,3 +129,21 @@ def test_countAccounts():
   data = daemon.countAccounts()
   print(data)
   daemon.close()
+  
+def test_getTips():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getTips()
+  print(data)
+  daemon.close()
+  
+def test_p2pStatus():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.p2pStatus()
+  print(data)
+  daemon.close()
+  
+def test_getDAGorder():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getDAGOrder(params=classes.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=1))
+  print(data)
+  daemon.close()

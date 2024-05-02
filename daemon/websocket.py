@@ -98,3 +98,17 @@ class DaemonWS(RPCWS):
   def countAccounts(self):
     data = self.send(method=methods.CountAccounts)
     return int(data)
+  
+  def getTips(self):
+    data = self.send(method=methods.GetTips)
+    items = [str(item) for item in data]
+    return items
+  
+  def p2pStatus(self):
+    data = self.send(method=methods.P2PStatus)
+    return from_dict(data_class=classes.P2PStatusResult, data=data)
+  
+  def getDAGOrder(self, params: classes.GetTopoheightRangeParams):
+    data = self.send(method=methods.GetDAGOrder, params=vars(params))
+    items = [str(item) for item in data]
+    return items

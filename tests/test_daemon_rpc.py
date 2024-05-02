@@ -106,3 +106,18 @@ def test_countTransactions():
 def test_countAccounts():
   result = testnetDaemon.countAccounts()
   print(result)
+  
+def test_getTips():
+  result = testnetDaemon.getTips()
+  print(result)
+  
+def test_p2pStatus():
+  result = testnetDaemon.p2pStatus()
+  print(result)
+  
+def test_getDAGOrder():
+  result = testnetDaemon.getDAGOrder(params=classes.GetTopoheightRangeParams(
+    start_topoheight=0,
+    end_topoheight=1
+  ))
+  print(result)

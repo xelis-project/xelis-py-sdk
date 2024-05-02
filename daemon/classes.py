@@ -104,6 +104,20 @@ class AssetWithData:
   asset: str
   topoheight: int
   decimals: int
+  
+@dataclass
+class P2PStatusResult:
+  best_topoheight: int
+  max_peers: int
+  our_topoheight: int
+  peer_count: int
+  peer_id: int
+  tag: str | None
+  
+@dataclass
+class GetTopoheightRangeParams:
+  start_topoheight: int
+  end_topoheight: int
 
 @dataclass
 class Block:
