@@ -138,3 +138,76 @@ class Block:
   total_size_in_bytes: int
   txs_hashes: list[str]
   version: int
+
+@dataclass
+class SubmitBlockParams:
+  block_template: str
+  miner_work: str = None
+
+@dataclass
+class Proof:
+  Y_0: list[int]
+  Y_1: list[int]
+  z_r: list[int]
+  z_x: list[int]
+
+@dataclass
+class Burn:
+  asset: str
+  amount: int
+
+@dataclass
+class Transfer:
+  asset: str
+  extra_data: list[int] | None
+  destination: str
+  commitment: list[int]
+  sender_handle: list[int]
+  receiver_handle: list[int]
+  ct_validity_proof: Proof
+
+@dataclass
+class EqProof:
+  Y_0: list[int]
+  Y_1: list[int]
+  Y_2: list[int]
+  z_r: list[int]
+  z_s: list[int]
+  z_x: list[int]
+
+@dataclass
+class SourceCommitment:
+  commitment: list[int]
+  proof: EqProof
+  asset: str
+  
+@dataclass
+class Reference:
+  hash: str
+  topoheight: int
+  
+@dataclass
+class TransactionData:
+  transfers: list[Transfer]
+  burn: Burn | None
+
+@dataclass
+class Transaction:
+  blocks: list[str] | None
+  hash: str
+  data: TransactionData
+  fee: int
+  nonce: int
+  source: str
+  reference: Reference
+  source_commitments: list[SourceCommitment]
+  range_proof: list[int]
+  signature: str
+  executed_in_block: str | None
+  version: int
+  first_seen: int | None
+  in_mempool: bool
+  
+@dataclass
+class GetTransactionsParams:
+  tx_hashes: list[str]

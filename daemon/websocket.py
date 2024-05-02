@@ -112,3 +112,25 @@ class DaemonWS(RPCWS):
     data = self.send(method=methods.GetDAGOrder, params=vars(params))
     items = [str(item) for item in data]
     return items
+  
+  def submitBlock(self, params: classes.SubmitBlockParams):
+    data = self.send(method=methods.SubmitBlock, params=vars(params))
+    return bool(data)
+  
+  def submitTransaction(self, hexData: str):
+    data = self.send(method=methods.SubmitTransaction, params={ "data": hexData })
+    return bool(data)
+  
+  def getMempool(self):
+    data = self.send(method=methods.GetMempool)
+    items = [from_dict(data_class=classes.Transaction, data=item) for item in data]
+    return items
+  
+  def getTransaction(self, hash: str):
+    data = self.send(method=methods.GetTransaction, params={ "hash": hash })
+    return from_dict(data_class=classes.Transaction, data=data)
+  
+  def getTransactions(self, params: classes.GetTransactionsParams):
+    data = self.send(method=methods.GetTransactions, params=vars(params))
+    items = [from_dict(data_class=classes.Transaction, data=item) for item in data]
+    return items

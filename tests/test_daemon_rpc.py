@@ -121,3 +121,16 @@ def test_getDAGOrder():
     end_topoheight=1
   ))
   print(result)
+  
+def test_getMempool():
+  result = mainnetDaemon.getMempool()
+  print(result)
+  
+def test_getTransaction():
+  result = mainnetDaemon.getTransaction(hash="33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d")
+  print(result)
+  
+def test_getTransactions():
+  params = classes.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
+  result = mainnetDaemon.getTransactions(params=params)
+  print(result)

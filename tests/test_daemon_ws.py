@@ -1,4 +1,4 @@
-from config.module import TESTNET_NODE_WS, XELIS_ASSET
+from config.module import TESTNET_NODE_WS, XELIS_ASSET, MAINNET_NODE_WS
 from daemon.websocket import DaemonWS
 import daemon.classes as classes
 
@@ -145,5 +145,24 @@ def test_p2pStatus():
 def test_getDAGorder():
   daemon = DaemonWS(url=TESTNET_NODE_WS)
   data = daemon.getDAGOrder(params=classes.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=1))
+  print(data)
+  daemon.close()
+  
+def test_getMempool():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getMempool()
+  print(data)
+  daemon.close()
+  
+def test_getTransaction():
+  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  data = daemon.getTransaction(hash="33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d")
+  print(data)
+  daemon.close()
+  
+def test_getTransactions():
+  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  params = classes.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
+  data = daemon.getTransactions(params=params)
   print(data)
   daemon.close()
