@@ -35,6 +35,11 @@ class GetBlocksAtHeightParams:
   include_txs: bool
   
 @dataclass
+class GetBlockByHashParams:
+  hash: str
+  include_txs: bool
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str
