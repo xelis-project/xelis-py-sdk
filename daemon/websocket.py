@@ -77,3 +77,16 @@ class DaemonWS(RPCWS):
   def getBalanceAtTopoheight(self, params: classes.GetBalanceAtTopoheightParams):
     data = self.send(method=methods.GetBalanceAtTopoheight, params=vars(params))
     return from_dict(data_class=classes.VersionedBalance, data=data)
+  
+  def getAsset(self, asset: str):
+    data = self.send(method=methods.GetAsset, params={ "asset": asset })
+    return from_dict(data_class=classes.Asset, data=data)
+  
+  def getAssets(self, params: str):
+    data = self.send(method=methods.GetAssets, params=vars(params))
+    items = [from_dict(data_class=classes.AssetWithData, data=item) for item in data]
+    return items
+  
+  def countAssets(self):
+    data = self.send(method=methods.CountAssets)
+    return int(data)

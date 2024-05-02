@@ -85,3 +85,16 @@ def test_getBalancecAtTopoheight():
   params = classes.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632)
   result = testnetDaemon.getBalanceAtTopoheight(params=params)
   print(result)
+  
+def test_getAsset():
+  result = testnetDaemon.getAsset(asset=XELIS_ASSET)
+  print(result)
+  
+def test_getAssets():
+  params = classes.GetAssetsParams()
+  result = testnetDaemon.getAssets(params=params)
+  print(result)
+  
+def test_countAssets():
+  result = testnetDaemon.countAssets()
+  print(result)

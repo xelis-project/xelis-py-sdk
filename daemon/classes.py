@@ -86,7 +86,25 @@ class VersionedBalance:
 class GetBalanceResult:
   version: VersionedBalance
   topoheight: int
-  
+
+@dataclass
+class GetAssetsParams:
+  Skip: int = None
+  Maximum: int = None
+  MinimumTopoheight: int = None
+  MaximumTopoheight: int = None
+
+@dataclass
+class Asset:
+  topoheight: int
+  decimals: int
+
+@dataclass
+class AssetWithData:
+  asset: str
+  topoheight: int
+  decimals: int
+
 @dataclass
 class Block:
   block_type: str

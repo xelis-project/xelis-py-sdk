@@ -99,3 +99,21 @@ def test_getBalanceAtTopoheight():
   data = daemon.getBalanceAtTopoheight(params=classes.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632))
   print(data)
   daemon.close()
+  
+def test_getAsset():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getAsset(asset=XELIS_ASSET)
+  print(data)
+  daemon.close()
+  
+def test_getAssets():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getAssets(params=classes.GetAssetsParams())
+  print(data)
+  daemon.close()
+  
+def test_countAssets():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.countAssets()
+  print(data)
+  daemon.close()
