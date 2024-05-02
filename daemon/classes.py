@@ -1,7 +1,10 @@
 from dataclasses import dataclass, field
+from typing import Optional
+
+from mashumaro import DataClassDictMixin, field_options
 
 @dataclass
-class GetInfoResult:
+class GetInfoResult(DataClassDictMixin):
   average_block_time: int
   block_reward: int
   block_time_target: int
@@ -11,121 +14,121 @@ class GetInfoResult:
   maximum_supply: int
   mempool_size: int
   network: str
-  pruned_topoheight: int | None
   stableheight: int
   top_block_hash: str
   topoheight: int
   version: str
+  pruned_topoheight: Optional[int] = None
   
 @dataclass
-class GetBlockTemplateResult:
+class GetBlockTemplateResult(DataClassDictMixin):
   template: str
   height: int
   topoheight: int
   difficulty: str
   
 @dataclass
-class GetBlockAtTopoheightParams:
+class GetBlockAtTopoheightParams(DataClassDictMixin):
   topoheight: int
   include_txs: bool
   
 @dataclass
-class GetBlocksAtHeightParams:
+class GetBlocksAtHeightParams(DataClassDictMixin):
   height: int
   include_txs: bool
   
 @dataclass
-class GetBlockByHashParams:
+class GetBlockByHashParams(DataClassDictMixin):
   hash: str
   include_txs: bool
   
 @dataclass
-class GetTopBlockParams:
+class GetTopBlockParams(DataClassDictMixin):
   include_txs: bool
   
 @dataclass
-class GetNonceResult:
+class GetNonceResult(DataClassDictMixin):
   nonce: int
-  previous_topoheight: int | None
   topoheight: int
+  previous_topoheight: Optional[int] = None
   
 @dataclass
-class VersionedNonce:
+class VersionedNonce(DataClassDictMixin):
   nonce: int
-  previous_topoheight: int | None
+  previous_topoheight: Optional[int] = None
   
 @dataclass
-class GetNonceAtTopoheightParams:
+class GetNonceAtTopoheightParams(DataClassDictMixin):
   address: str
   topoheight: int
   
 @dataclass
-class GetBalanceParams:
+class GetBalanceParams(DataClassDictMixin):
   address: str
   asset: str
   
 @dataclass
-class GetBalanceAtTopoheightParams:
+class GetBalanceAtTopoheightParams(DataClassDictMixin):
   address: str
   asset: str
   topoheight: int
 
 @dataclass
-class EncryptedBalance:
+class EncryptedBalance(DataClassDictMixin):
   commitment: list[int]
   handle: list[int]
   
 @dataclass
-class VersionedBalance:
+class VersionedBalance(DataClassDictMixin):
   balance_type: str # input, output or both
   final_balance: EncryptedBalance
-  output_balance: EncryptedBalance | None
-  previous_topoheight: int | None
+  output_balance: Optional[EncryptedBalance] = None
+  previous_topoheight: Optional[int] = None
 
 @dataclass
-class GetBalanceResult:
+class GetBalanceResult(DataClassDictMixin):
   version: VersionedBalance
   topoheight: int
 
 @dataclass
-class GetAssetsParams:
-  Skip: int = None
-  Maximum: int = None
-  MinimumTopoheight: int = None
-  MaximumTopoheight: int = None
+class GetAssetsParams(DataClassDictMixin):
+  Skip: Optional[int] = None
+  Maximum: Optional[int] = None
+  MinimumTopoheight: Optional[int] = None
+  MaximumTopoheight: Optional[int] = None
 
 @dataclass
-class Asset:
+class Asset(DataClassDictMixin):
   topoheight: int
   decimals: int
 
 @dataclass
-class AssetWithData:
+class AssetWithData(DataClassDictMixin):
   asset: str
   topoheight: int
   decimals: int
   
 @dataclass
-class P2PStatusResult:
+class P2PStatusResult(DataClassDictMixin):
   best_topoheight: int
   max_peers: int
   our_topoheight: int
   peer_count: int
   peer_id: int
-  tag: str | None
+  tag: Optional[str] = None
   
 @dataclass
-class GetTopoheightRangeParams:
+class GetTopoheightRangeParams(DataClassDictMixin):
   start_topoheight: int
   end_topoheight: int
 
 @dataclass
-class GetHeightRangeParams:
+class GetHeightRangeParams(DataClassDictMixin):
   start_height: int
   end_height: int
 
 @dataclass
-class Block:
+class Block(DataClassDictMixin):
   block_type: str
   cumulative_difficulty: str
   difficulty: str
@@ -139,40 +142,40 @@ class Block:
   timestamp: int
   tips: list[str]
   topoheight: int
-  total_fees: int | None
   total_size_in_bytes: int
   txs_hashes: list[str]
   version: int
+  total_fees: Optional[int] = None
 
 @dataclass
-class SubmitBlockParams:
+class SubmitBlockParams(DataClassDictMixin):
   block_template: str
-  miner_work: str = None
+  miner_work: Optional[str] = None
 
 @dataclass
-class Proof:
+class Proof(DataClassDictMixin):
   Y_0: list[int]
   Y_1: list[int]
   z_r: list[int]
   z_x: list[int]
 
 @dataclass
-class Burn:
+class Burn(DataClassDictMixin):
   asset: str
   amount: int
 
 @dataclass
-class Transfer:
+class Transfer(DataClassDictMixin):
   asset: str
-  extra_data: list[int] | None
   destination: str
   commitment: list[int]
   sender_handle: list[int]
   receiver_handle: list[int]
   ct_validity_proof: Proof
+  extra_data: Optional[list[int]] = None
 
 @dataclass
-class EqProof:
+class EqProof(DataClassDictMixin):
   Y_0: list[int]
   Y_1: list[int]
   Y_2: list[int]
@@ -181,24 +184,23 @@ class EqProof:
   z_x: list[int]
 
 @dataclass
-class SourceCommitment:
+class SourceCommitment(DataClassDictMixin):
   commitment: list[int]
   proof: EqProof
   asset: str
   
 @dataclass
-class Reference:
+class Reference(DataClassDictMixin):
   hash: str
   topoheight: int
   
 @dataclass
-class TransactionData:
+class TransactionData(DataClassDictMixin):
   transfers: list[Transfer]
-  burn: Burn | None
+  burn: Optional[Burn] = None
 
 @dataclass
-class Transaction:
-  blocks: list[str] | None
+class Transaction(DataClassDictMixin):
   hash: str
   data: TransactionData
   fee: int
@@ -208,42 +210,43 @@ class Transaction:
   source_commitments: list[SourceCommitment]
   range_proof: list[int]
   signature: str
-  executed_in_block: str | None
   version: int
-  first_seen: int | None
   in_mempool: bool
+  blocks: Optional[list[str]] = None
+  executed_in_block: Optional[str] = None
+  first_seen: Optional[int] = None
   
 @dataclass
-class GetTransactionsParams:
+class GetTransactionsParams(DataClassDictMixin):
   tx_hashes: list[str]
 
 @dataclass
-class MiningHistory:
+class MiningHistory(DataClassDictMixin):
   reward: int
   
 @dataclass
-class BurnHistory:
+class BurnHistory(DataClassDictMixin):
   amount: int
   
 @dataclass
-class OutgoingHistory:
+class OutgoingHistory(DataClassDictMixin):
   to: str
   
 @dataclass()
-class IncomingHistory:
-  from_: str
+class IncomingHistory(DataClassDictMixin):
+  sender: str = field(metadata=field_options(alias="from"))
 
 @dataclass
-class DevFeeHistory:
+class DevFeeHistory(DataClassDictMixin):
   reward: int
 
 @dataclass
-class AccountHistory:
+class AccountHistory(DataClassDictMixin):
   topoheight: int
   block_timestamp: int
   hash: str
-  mining: MiningHistory | None
-  burn: BurnHistory | None
-  outgoing: OutgoingHistory | None
-  incoming: IncomingHistory | None
-  dev_fee: MiningHistory | None
+  mining: Optional[MiningHistory] = None
+  burn: Optional[BurnHistory] = None
+  outgoing: Optional[OutgoingHistory] = None
+  incoming: Optional[IncomingHistory] = None
+  dev_fee: Optional[MiningHistory] = None
