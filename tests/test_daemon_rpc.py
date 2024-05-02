@@ -57,3 +57,7 @@ def test_getTopBlock():
   params = classes.GetTopBlockParams(include_txs=False)
   result = testnetDaemon.getTopBlock(params=params)
   print(result)
+  
+def test_getNonce():
+  result = testnetDaemon.getNonce(address=TESTNET_ADDR)
+  print(result)

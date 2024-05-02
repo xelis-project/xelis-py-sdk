@@ -45,3 +45,6 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.GetTopBlock, params=vars(params))
     return from_dict(data_class=classes.Block, data=data)
   
+  def getNonce(self, address: str):
+    data = self.fetch(method=methods.GetNonce, params={ "address": address })
+    return from_dict(data_class=classes.GetNonceResult, data=data)

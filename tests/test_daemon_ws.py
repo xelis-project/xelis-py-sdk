@@ -63,3 +63,9 @@ def test_getTopBlock():
   data = daemon.getTopBlock(classes.GetTopBlockParams(include_txs=False))
   print(data)
   daemon.close()
+  
+def test_getNonce():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getNonce(address=TESTNET_ADDR)
+  print(data)
+  daemon.close()

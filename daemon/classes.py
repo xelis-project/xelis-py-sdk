@@ -44,6 +44,12 @@ class GetTopBlockParams:
   include_txs: bool
   
 @dataclass
+class GetNonceResult:
+  nonce: int
+  previous_topoheight: int | None
+  topoheight: int
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str
