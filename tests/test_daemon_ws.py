@@ -57,3 +57,9 @@ def test_getBlockByHash():
   data = daemon.getBlockByHash(classes.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False))
   print(data)
   daemon.close()
+  
+def test_getTopBlock():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.getTopBlock(classes.GetTopBlockParams(include_txs=False))
+  print(data)
+  daemon.close()

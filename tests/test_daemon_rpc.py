@@ -52,3 +52,8 @@ def test_getBlockByHash():
   params = classes.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False)
   result = testnetDaemon.getBlockByHash(params=params)
   print(result)
+  
+def test_getTopBlock():
+  params = classes.GetTopBlockParams(include_txs=False)
+  result = testnetDaemon.getTopBlock(params=params)
+  print(result)

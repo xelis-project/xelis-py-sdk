@@ -47,3 +47,7 @@ class DaemonWS(RPCWS):
   def getBlockByHash(self, params: classes.GetBlockByHashParams):
     data = self.send(method=methods.GetBlockByHash, params=vars(params))
     return from_dict(data_class=classes.Block, data=data)
+  
+  def getTopBlock(self, params: classes.GetTopBlockParams):
+    data = self.send(method=methods.GetTopBlock, params=vars(params))
+    return from_dict(data_class=classes.Block, data=data)

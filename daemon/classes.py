@@ -40,6 +40,10 @@ class GetBlockByHashParams:
   include_txs: bool
   
 @dataclass
+class GetTopBlockParams:
+  include_txs: bool
+  
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str
