@@ -120,6 +120,11 @@ class GetTopoheightRangeParams:
   end_topoheight: int
 
 @dataclass
+class GetHeightRangeParams:
+  start_height: int
+  end_height: int
+
+@dataclass
 class Block:
   block_type: str
   cumulative_difficulty: str

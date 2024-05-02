@@ -134,3 +134,13 @@ def test_getTransactions():
   params = classes.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
   result = mainnetDaemon.getTransactions(params=params)
   print(result)
+  
+def test_getBlocksRangeByTopoheight():
+  params = classes.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=10)
+  result = testnetDaemon.getBlocksRangeByTopoheight(params=params)
+  print(result)
+  
+def test_getBlocksRangeByHeight():
+  params = classes.GetHeightRangeParams(start_height=0, end_height=10)
+  result = testnetDaemon.getBlocksRangeByHeight(params=params)
+  print(result)

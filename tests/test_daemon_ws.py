@@ -166,3 +166,17 @@ def test_getTransactions():
   data = daemon.getTransactions(params=params)
   print(data)
   daemon.close()
+  
+def test_getBlocksRangeByTopoheight():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  params = classes.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=10)
+  data = daemon.getBlocksRangeByTopoheight(params=params)
+  print(data)
+  daemon.close()
+
+def test_getBlocksRangeByHeight():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  params = classes.GetHeightRangeParams(start_height=0, end_height=10)
+  data = daemon.getBlocksRangeByHeight(params=params)
+  print(data)
+  daemon.close()

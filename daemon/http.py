@@ -127,3 +127,13 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.GetTransactions, params=vars(params))
     items = [from_dict(data_class=classes.Transaction, data=item) for item in data]
     return items
+  
+  def getBlocksRangeByTopoheight(self, params: classes.GetTopoheightRangeParams):
+    data = self.fetch(method=methods.GetBlocksRangeByTopoheight, params=vars(params))
+    items = [from_dict(data_class=classes.Block, data=item) for item in data]
+    return items
+  
+  def getBlocksRangeByHeight(self, params: classes.GetHeightRangeParams):
+    data = self.fetch(method=methods.GetBlocksRangeByHeight, params=vars(params))
+    items = [from_dict(data_class=classes.Block, data=item) for item in data]
+    return items
