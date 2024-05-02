@@ -48,3 +48,8 @@ class DaemonRPC(RPCHttp):
   def getNonce(self, address: str):
     data = self.fetch(method=methods.GetNonce, params={ "address": address })
     return from_dict(data_class=classes.GetNonceResult, data=data)
+  
+  def hasNonce(self, address: str):
+    data = self.fetch(method=methods.HasNonce, params={ "address": address })
+    exist = data["exist"]
+    return bool(exist)

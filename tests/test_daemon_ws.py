@@ -69,3 +69,9 @@ def test_getNonce():
   data = daemon.getNonce(address=TESTNET_ADDR)
   print(data)
   daemon.close()
+  
+def test_hasNonce():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.hasNonce(address=TESTNET_ADDR)
+  print(data)
+  daemon.close()

@@ -61,3 +61,7 @@ def test_getTopBlock():
 def test_getNonce():
   result = testnetDaemon.getNonce(address=TESTNET_ADDR)
   print(result)
+  
+def test_hasNonce():
+  result = testnetDaemon.hasNonce(address=TESTNET_ADDR)
+  print(result)
