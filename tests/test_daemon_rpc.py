@@ -144,3 +144,20 @@ def test_getBlocksRangeByHeight():
   params = classes.GetHeightRangeParams(start_height=0, end_height=10)
   result = testnetDaemon.getBlocksRangeByHeight(params=params)
   print(result)
+  
+def test_getAcounts():
+  params = classes.GetAssetsParams()
+  result = testnetDaemon.getAccounts(params=params)
+  print(result)
+  
+def test_getAccountHistory():
+  #dev fee wallet
+  result = mainnetDaemon.getAccountHistory(address="xel:vs3mfyywt0fjys0rgslue7mm4wr23xdgejsjk0ld7f2kxng4d4nqqnkdufz")
+  print(result)
+  
+  result = mainnetDaemon.getAccountHistory(address="xel:qcd39a5u8cscztamjuyr7hdj6hh2wh9nrmhp86ljx2sz6t99ndjqqm7wxj8")
+  print(result)
+  
+def test_getAccountAssets():
+  result = testnetDaemon.getAccountAssets(address=TESTNET_ADDR)
+  print(result)

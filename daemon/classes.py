@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class GetInfoResult:
@@ -216,3 +216,34 @@ class Transaction:
 @dataclass
 class GetTransactionsParams:
   tx_hashes: list[str]
+
+@dataclass
+class MiningHistory:
+  reward: int
+  
+@dataclass
+class BurnHistory:
+  amount: int
+  
+@dataclass
+class OutgoingHistory:
+  to: str
+  
+@dataclass()
+class IncomingHistory:
+  from_: str
+
+@dataclass
+class DevFeeHistory:
+  reward: int
+
+@dataclass
+class AccountHistory:
+  topoheight: int
+  block_timestamp: int
+  hash: str
+  mining: MiningHistory | None
+  burn: BurnHistory | None
+  outgoing: OutgoingHistory | None
+  incoming: IncomingHistory | None
+  dev_fee: MiningHistory | None

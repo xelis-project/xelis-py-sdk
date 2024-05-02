@@ -144,3 +144,18 @@ class DaemonWS(RPCWS):
     data = self.send(method=methods.GetBlocksRangeByHeight, params=vars(params))
     items = [from_dict(data_class=classes.Block, data=item) for item in data]
     return items
+  
+  def getAccounts(self, params: classes.GetAssetsParams):
+    data = self.send(method=methods.GetAccounts, params=vars(params))
+    items = [str(item) for item in data]
+    return items
+  
+  def getAccountHistory(self, address: str):
+    data = self.send(method=methods.GetAccountHistory, params={ "address": address })
+    items = [from_dict(data_class=classes.AccountHistory, data=item) for item in data]
+    return items
+
+  def getAccountAssets(self, address: str):
+    data = self.send(method=methods.GetAccountAssets, params={ "address": address })
+    items = [str(item) for item in data]
+    return items

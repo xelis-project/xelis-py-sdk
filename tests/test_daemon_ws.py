@@ -180,3 +180,26 @@ def test_getBlocksRangeByHeight():
   data = daemon.getBlocksRangeByHeight(params=params)
   print(data)
   daemon.close()
+  
+def test_getAcounts():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  params = classes.GetAssetsParams()
+  result = daemon.getAccounts(params=params)
+  print(result)
+  daemon.close()
+  
+def test_getAccountHistory():
+  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  #dev fee wallet
+  result = daemon.getAccountHistory(address="xel:vs3mfyywt0fjys0rgslue7mm4wr23xdgejsjk0ld7f2kxng4d4nqqnkdufz")
+  print(result)
+  
+  result = daemon.getAccountHistory(address="xel:qcd39a5u8cscztamjuyr7hdj6hh2wh9nrmhp86ljx2sz6t99ndjqqm7wxj8")
+  print(result)
+  daemon.close()
+  
+def test_getAccountAssets():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.getAccountAssets(address=TESTNET_ADDR)
+  print(result)
+  daemon.close()
