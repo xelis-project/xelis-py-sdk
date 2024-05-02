@@ -116,4 +116,16 @@ def test_countAssets():
   daemon = DaemonWS(url=TESTNET_NODE_WS)
   data = daemon.countAssets()
   print(data)
+  daemon.close()  
+
+def test_countTransactions():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.countTransactions()
+  print(data)
+  daemon.close()
+    
+def test_countAccounts():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  data = daemon.countAccounts()
+  print(data)
   daemon.close()

@@ -83,3 +83,11 @@ class DaemonRPC(RPCHttp):
   def countAssets(self):
     data = self.fetch(method=methods.CountAssets)
     return int(data)
+  
+  def countTransactions(self):
+    data = self.fetch(method=methods.CountTransactions)
+    return int(data)
+  
+  def countAccounts(self):
+    data = self.fetch(method=methods.CountAccounts)
+    return int(data)

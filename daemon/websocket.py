@@ -90,3 +90,11 @@ class DaemonWS(RPCWS):
   def countAssets(self):
     data = self.send(method=methods.CountAssets)
     return int(data)
+  
+  def countTransactions(self):
+    data = self.send(method=methods.CountTransactions)
+    return int(data)
+  
+  def countAccounts(self):
+    data = self.send(method=methods.CountAccounts)
+    return int(data)

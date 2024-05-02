@@ -98,3 +98,11 @@ def test_getAssets():
 def test_countAssets():
   result = testnetDaemon.countAssets()
   print(result)
+
+def test_countTransactions():
+  result = testnetDaemon.countTransactions()
+  print(result)
+
+def test_countAccounts():
+  result = testnetDaemon.countAccounts()
+  print(result)
