@@ -151,3 +151,44 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.GetAccountAssets, params={ "address": address })
     items = [str(item) for item in data]
     return items
+  
+  def getPeers(self):
+    data = self.fetch(method=methods.GetPeers)
+    return classes.GetPeersResult.from_dict(d=data)
+
+  def getDevFeeThresholds(self):
+    data = self.fetch(method=methods.GetDevFeeThresholds)
+    items = [classes.Fee.from_dict(d=item) for item in data]
+    return items
+  
+  def getSizeOnDisk(self):
+    data = self.fetch(method=methods.GetSizeOnDisk)
+    return classes.SizeOnDisk.from_dict(d=data)
+  
+  def isTxExecutedInBlock(self, params: classes.IsTxExecutedInBlockParams):
+    data = self.fetch(method=methods.IsTxExecutedInBlock, params=vars(params))
+    return bool(data)
+  
+  def getAccountRegistrationTopoheight(self, address: str):
+    data = self.fetch(method=methods.GetAccountRegistrationTopoheight, params={ "address": address })
+    return int(data)
+  
+  def isAccountRegistered(self, params: classes.IsAccountRegisteredParams):
+    data = self.fetch(method=methods.IsAccountRegistered, params=vars(params))
+    return bool(data)
+  
+  def getDifficulty(self):
+    data = self.fetch(method=methods.GetDifficulty)
+    return classes.GetDifficultyResult.from_dict(d=data)
+  
+  def validateAddress(self, params: classes.ValidateAddressParams):
+    data = self.fetch(method=methods.ValidateAddress, params=vars(params))
+    return bool(data)
+  
+  def extractKeyFromAddress(self, params: classes.ExtractKeyFromAddressParams) -> str | list[int]:
+    data = self.fetch(method=methods.ExtractKeyFromAddress, params=vars(params))
+    return data
+  
+  def createMinerWork(self, params: classes.CreateMinerWorkParams):
+    data = self.fetch(method=methods.CreateMinerWork, params=vars(params))
+    return classes.CreateMinerWorkResult.from_dict(data)

@@ -161,3 +161,50 @@ def test_getAccountHistory():
 def test_getAccountAssets():
   result = testnetDaemon.getAccountAssets(address=TESTNET_ADDR)
   print(result)
+  
+def test_getPeers():
+  result = testnetDaemon.getPeers()
+  print(result)
+  
+def test_getDevFeeThresholds():
+  result = testnetDaemon.getDevFeeThresholds()
+  print(result)
+  
+def test_getSizeOnDisk():
+  result = testnetDaemon.getSizeOnDisk()
+  print(result)
+  
+def test_isTxExecutedInBlock():
+  params = classes.IsTxExecutedInBlockParams(
+    block_hash="f61a3e037b4c8ae8aff2ace3a499a6f552ccd4ddaabd2e2067fec20c0da71d8c", 
+    tx_hash="c743d8d822cd553672f8f534ed71277e8e50cfa37af9826a1ee1e922f059b019",
+  )
+  result = mainnetDaemon.isTxExecutedInBlock(params=params)
+  print(result)
+  
+def test_getAccountRegistrationTopoheight():
+  result = testnetDaemon.getAccountRegistrationTopoheight(address=TESTNET_ADDR)
+  print(result)
+  
+def test_isAccountRegistered():
+  params = classes.IsAccountRegisteredParams(address=TESTNET_ADDR, in_stable_height=True)
+  result = testnetDaemon.isAccountRegistered(params=params)
+  print(result)
+
+def test_getDifficulty():
+  result = testnetDaemon.getDifficulty()
+  print(result)
+  
+def test_validateAddress():
+  params = classes.ValidateAddressParams(address=TESTNET_ADDR, allow_integrated=False)
+  result = testnetDaemon.validateAddress(params=params)
+  print(result)
+  
+def test_extractKeyFromAddress():
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=True)
+  result = testnetDaemon.extractKeyFromAddress(params)
+  print(result)
+  
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=False)
+  result = testnetDaemon.extractKeyFromAddress(params)
+  print(result)

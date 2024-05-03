@@ -250,3 +250,70 @@ class AccountHistory(DataClassDictMixin):
   outgoing: Optional[OutgoingHistory] = None
   incoming: Optional[IncomingHistory] = None
   dev_fee: Optional[MiningHistory] = None
+
+@dataclass
+class Peer:
+  id: int
+  cumulative_difficulty: str
+  connected_on: int
+  height: int
+  local_port: int
+  top_block_hash: str
+  addr: str
+  last_ping: int
+  topoheight: int
+  peers: dict[str, str] # in, out or both
+  version: str
+  pruned_topoheight: Optional[int] = None
+  tag: Optional[str] = None
+
+@dataclass
+class GetPeersResult(DataClassDictMixin):
+  peers: list[Peer]
+  total_peers: int
+  hidden_peers: int
+  
+@dataclass
+class Fee(DataClassDictMixin):
+  fee_percentage: int
+  height: int
+  
+@dataclass
+class SizeOnDisk(DataClassDictMixin):
+  size_bytes: int
+  size_formatted: str
+  
+@dataclass
+class IsTxExecutedInBlockParams(DataClassDictMixin):
+  tx_hash: str
+  block_hash: str
+  
+@dataclass
+class IsAccountRegisteredParams(DataClassDictMixin):
+  address: str
+  in_stable_height: bool
+  
+@dataclass
+class GetDifficultyResult(DataClassDictMixin):
+  difficulty: str
+  hashrate: str
+  hashrate_formatted: str
+  
+@dataclass
+class ValidateAddressParams(DataClassDictMixin):
+  address: str
+  allow_integrated: bool
+  
+@dataclass 
+class ExtractKeyFromAddressParams(DataClassDictMixin):
+  address: str
+  tx_as_hex: bool
+  
+@dataclass 
+class CreateMinerWorkParams(DataClassDictMixin):
+  template: str
+  address: Optional[str] = None
+  
+@dataclass
+class CreateMinerWorkResult(DataClassDictMixin):
+  miner_work: str

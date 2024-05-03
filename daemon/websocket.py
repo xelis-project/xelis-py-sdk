@@ -158,3 +158,45 @@ class DaemonWS(RPCWS):
     data = self.send(method=methods.GetAccountAssets, params={ "address": address })
     items = [str(item) for item in data]
     return items
+
+  def getPeers(self):
+    data = self.send(method=methods.GetPeers)
+    return classes.GetPeersResult.from_dict(data)
+
+  def getDevFeeThresholds(self):
+    data = self.send(method=methods.GetDevFeeThresholds)
+    items = [classes.Fee.from_dict(item) for item in data]
+    return items
+  
+  def getSizeOnDisk(self):
+    data = self.send(method=methods.GetSizeOnDisk)
+    return classes.SizeOnDisk.from_dict(data)
+  
+  def isTxExecutedInBlock(self, params: classes.IsTxExecutedInBlockParams):
+    data = self.send(method=methods.IsTxExecutedInBlock, params=vars(params))
+    return bool(data)
+  
+  def getAccountRegistrationTopoheight(self, address: str):
+    data = self.send(method=methods.GetAccountRegistrationTopoheight, params={ "address": address })
+    return int(data)
+  
+  def isAccountRegistered(self, params: classes.IsAccountRegisteredParams):
+    data = self.send(method=methods.IsAccountRegistered, params=vars(params))
+    return bool(data)
+  
+  def getDifficulty(self):
+    data = self.send(method=methods.GetDifficulty)
+    return classes.GetDifficultyResult.from_dict(d=data)
+  
+    
+  def validateAddress(self, params: classes.ValidateAddressParams):
+    data = self.send(method=methods.ValidateAddress, params=vars(params))
+    return bool(data)
+  
+  def extractKeyFromAddress(self, params: classes.ExtractKeyFromAddressParams):
+    data = self.send(method=methods.ExtractKeyFromAddress, params=vars(params))
+    return data
+  
+  def createMinerWork(self, params: classes.CreateMinerWorkParams):
+    data = self.send(method=methods.CreateMinerWork, params=vars(params))
+    return classes.CreateMinerWorkResult.from_dict(data)

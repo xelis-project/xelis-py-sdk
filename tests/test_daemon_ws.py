@@ -203,3 +203,68 @@ def test_getAccountAssets():
   result = daemon.getAccountAssets(address=TESTNET_ADDR)
   print(result)
   daemon.close()
+  
+def test_getPeers():
+  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  result = daemon.getPeers()
+  print(result)
+  daemon.close()
+  
+def test_getDevFeeThresholds():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.getDevFeeThresholds()
+  print(result)
+  daemon.close()
+  
+def test_getSizeOnDisk():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.getSizeOnDisk()
+  print(result)
+  daemon.close()
+  
+def test_isTxExecutedInBlock():
+  params = classes.IsTxExecutedInBlockParams(
+    block_hash="f61a3e037b4c8ae8aff2ace3a499a6f552ccd4ddaabd2e2067fec20c0da71d8c", 
+    tx_hash="c743d8d822cd553672f8f534ed71277e8e50cfa37af9826a1ee1e922f059b019",
+  )
+  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  result = daemon.isTxExecutedInBlock(params=params)
+  print(result)
+  daemon.close()
+  
+def test_getAccountRegistrationTopoheight():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.getAccountRegistrationTopoheight(address=TESTNET_ADDR)
+  print(result)
+  daemon.close()
+  
+def test_isAccountRegistered():
+  params = classes.IsAccountRegisteredParams(address=TESTNET_ADDR, in_stable_height=True)
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.isAccountRegistered(params=params)
+  print(result)
+  daemon.close()
+  
+def test_getDifficulty():
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.getDifficulty()
+  print(result)
+  daemon.close()
+  
+def test_validateAddress():
+  params = classes.ValidateAddressParams(address=TESTNET_ADDR, allow_integrated=False)
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.validateAddress(params=params)
+  print(result)
+  daemon.close()
+  
+def test_extractKeyFromAddress():
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=True)
+  daemon = DaemonWS(url=TESTNET_NODE_WS)
+  result = daemon.extractKeyFromAddress(params)
+  print(result)
+  
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=False)
+  result = daemon.extractKeyFromAddress(params)
+  print(result)
+  daemon.close()
