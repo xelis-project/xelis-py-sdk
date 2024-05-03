@@ -1,5 +1,4 @@
-import daemon.methods as methods
-import daemon.classes as classes
+from daemon import classes, methods
 from rpc.http import RPCHttp
 
 class DaemonRPC(RPCHttp):

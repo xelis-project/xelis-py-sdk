@@ -1,6 +1,5 @@
 from websockets.sync.client import connect, ClientConnection
-import daemon.methods as methods
-import daemon.classes as classes
+from daemon import classes, methods
 from rpc.websocket import RPCWS
 
 class DaemonWS(RPCWS):
