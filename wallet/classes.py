@@ -1,12 +1,12 @@
-from dataclasses import dataclass, field
-from typing import Optional
+from dataclasses import dataclass
+from typing import Any, Optional
 import daemon.classes
 
-from mashumaro import DataClassDictMixin, field_options
+from mashumaro import DataClassDictMixin
 
 @dataclass
 class GetAddressParams(DataClassDictMixin):
-  integrated_data: Optional[any] = None
+  integrated_data: Optional[Any] = None
 
 @dataclass
 class SplitAddressParams(DataClassDictMixin):
@@ -15,7 +15,7 @@ class SplitAddressParams(DataClassDictMixin):
 @dataclass
 class SplitAddressResult(DataClassDictMixin):
   address: str
-  integrated_data: any
+  integrated_data: Any
   
 @dataclass
 class RescanParams(DataClassDictMixin):
@@ -35,13 +35,13 @@ class TransferOut(DataClassDictMixin):
   amount: int
   asset: str
   destination: str
-  extra_data: Optional[any] = None
+  extra_data: Optional[Any] = None
   
 @dataclass
 class TransferIn(DataClassDictMixin):
   amount: int
   asset: str
-  extra_data: Optional[any] = None
+  extra_data: Optional[Any] = None
   
 @dataclass
 class BuildTransactionParams(DataClassDictMixin):
@@ -105,12 +105,12 @@ class BuildTransactionResult(DataClassDictMixin):
   version: str
   
 @dataclass
-class EstimateFeesParams:
+class EstimateFeesParams(DataClassDictMixin):
   transfers: Optional[list[TransferOut]] = None
   burn: Optional[daemon.classes.Burn] = None
   
 @dataclass
-class ListTransactionsParams:
+class ListTransactionsParams(DataClassDictMixin):
   accept_incoming: bool = True
   accept_outgoing: bool = True
   accept_coinbase: bool = True
