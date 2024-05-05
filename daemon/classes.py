@@ -1,10 +1,10 @@
 from dataclasses import dataclass, field
 from typing import Optional
-
-from mashumaro import DataClassDictMixin, field_options
+from mashumaro import field_options
+from rpc.classes import BaseDictMixin
 
 @dataclass
-class GetInfoResult(DataClassDictMixin):
+class GetInfoResult(BaseDictMixin):
   average_block_time: int
   block_reward: int
   block_time_target: int
@@ -21,95 +21,95 @@ class GetInfoResult(DataClassDictMixin):
   pruned_topoheight: Optional[int] = None
   
 @dataclass
-class GetBlockTemplateResult(DataClassDictMixin):
+class GetBlockTemplateResult(BaseDictMixin):
   template: str
   height: int
   topoheight: int
   difficulty: str
   
 @dataclass
-class GetBlockAtTopoheightParams(DataClassDictMixin):
+class GetBlockAtTopoheightParams(BaseDictMixin):
   topoheight: int
   include_txs: bool
   
 @dataclass
-class GetBlocksAtHeightParams(DataClassDictMixin):
+class GetBlocksAtHeightParams(BaseDictMixin):
   height: int
   include_txs: bool
   
 @dataclass
-class GetBlockByHashParams(DataClassDictMixin):
+class GetBlockByHashParams(BaseDictMixin):
   hash: str
   include_txs: bool
   
 @dataclass
-class GetTopBlockParams(DataClassDictMixin):
+class GetTopBlockParams(BaseDictMixin):
   include_txs: bool
   
 @dataclass
-class GetNonceResult(DataClassDictMixin):
+class GetNonceResult(BaseDictMixin):
   nonce: int
   topoheight: int
   previous_topoheight: Optional[int] = None
   
 @dataclass
-class VersionedNonce(DataClassDictMixin):
+class VersionedNonce(BaseDictMixin):
   nonce: int
   previous_topoheight: Optional[int] = None
   
 @dataclass
-class GetNonceAtTopoheightParams(DataClassDictMixin):
+class GetNonceAtTopoheightParams(BaseDictMixin):
   address: str
   topoheight: int
   
 @dataclass
-class GetBalanceParams(DataClassDictMixin):
+class GetBalanceParams(BaseDictMixin):
   address: str
   asset: str
   
 @dataclass
-class GetBalanceAtTopoheightParams(DataClassDictMixin):
+class GetBalanceAtTopoheightParams(BaseDictMixin):
   address: str
   asset: str
   topoheight: int
 
 @dataclass
-class EncryptedBalance(DataClassDictMixin):
+class EncryptedBalance(BaseDictMixin):
   commitment: list[int]
   handle: list[int]
   
 @dataclass
-class VersionedBalance(DataClassDictMixin):
+class VersionedBalance(BaseDictMixin):
   balance_type: str # input, output or both
   final_balance: EncryptedBalance
   output_balance: Optional[EncryptedBalance] = None
   previous_topoheight: Optional[int] = None
 
 @dataclass
-class GetBalanceResult(DataClassDictMixin):
+class GetBalanceResult(BaseDictMixin):
   version: VersionedBalance
   topoheight: int
 
 @dataclass
-class GetAssetsParams(DataClassDictMixin):
+class GetAssetsParams(BaseDictMixin):
   Skip: Optional[int] = None
   Maximum: Optional[int] = None
   MinimumTopoheight: Optional[int] = None
   MaximumTopoheight: Optional[int] = None
 
 @dataclass
-class Asset(DataClassDictMixin):
+class Asset(BaseDictMixin):
   topoheight: int
   decimals: int
 
 @dataclass
-class AssetWithData(DataClassDictMixin):
+class AssetWithData(BaseDictMixin):
   asset: str
   topoheight: int
   decimals: int
   
 @dataclass
-class P2PStatusResult(DataClassDictMixin):
+class P2PStatusResult(BaseDictMixin):
   best_topoheight: int
   max_peers: int
   our_topoheight: int
@@ -118,17 +118,17 @@ class P2PStatusResult(DataClassDictMixin):
   tag: Optional[str] = None
   
 @dataclass
-class GetTopoheightRangeParams(DataClassDictMixin):
+class GetTopoheightRangeParams(BaseDictMixin):
   start_topoheight: int
   end_topoheight: int
 
 @dataclass
-class GetHeightRangeParams(DataClassDictMixin):
+class GetHeightRangeParams(BaseDictMixin):
   start_height: int
   end_height: int
 
 @dataclass
-class Block(DataClassDictMixin):
+class Block(BaseDictMixin):
   block_type: str
   cumulative_difficulty: str
   difficulty: str
@@ -148,24 +148,24 @@ class Block(DataClassDictMixin):
   total_fees: Optional[int] = None
 
 @dataclass
-class SubmitBlockParams(DataClassDictMixin):
+class SubmitBlockParams(BaseDictMixin):
   block_template: str
   miner_work: Optional[str] = None
 
 @dataclass
-class Proof(DataClassDictMixin):
+class Proof(BaseDictMixin):
   Y_0: list[int]
   Y_1: list[int]
   z_r: list[int]
   z_x: list[int]
 
 @dataclass
-class Burn(DataClassDictMixin):
+class Burn(BaseDictMixin):
   asset: str
   amount: int
 
 @dataclass
-class Transfer(DataClassDictMixin):
+class Transfer(BaseDictMixin):
   asset: str
   destination: str
   commitment: list[int]
@@ -175,7 +175,7 @@ class Transfer(DataClassDictMixin):
   extra_data: Optional[list[int]] = None
 
 @dataclass
-class EqProof(DataClassDictMixin):
+class EqProof(BaseDictMixin):
   Y_0: list[int]
   Y_1: list[int]
   Y_2: list[int]
@@ -184,23 +184,23 @@ class EqProof(DataClassDictMixin):
   z_x: list[int]
 
 @dataclass
-class SourceCommitment(DataClassDictMixin):
+class SourceCommitment(BaseDictMixin):
   commitment: list[int]
   proof: EqProof
   asset: str
   
 @dataclass
-class Reference(DataClassDictMixin):
+class Reference(BaseDictMixin):
   hash: str
   topoheight: int
   
 @dataclass
-class TransactionData(DataClassDictMixin):
+class TransactionData(BaseDictMixin):
   transfers: list[Transfer]
   burn: Optional[Burn] = None
 
 @dataclass
-class Transaction(DataClassDictMixin):
+class Transaction(BaseDictMixin):
   hash: str
   data: TransactionData
   fee: int
@@ -217,31 +217,31 @@ class Transaction(DataClassDictMixin):
   first_seen: Optional[int] = None
   
 @dataclass
-class GetTransactionsParams(DataClassDictMixin):
+class GetTransactionsParams(BaseDictMixin):
   tx_hashes: list[str]
 
 @dataclass
-class MiningHistory(DataClassDictMixin):
+class MiningHistory(BaseDictMixin):
   reward: int
   
 @dataclass
-class BurnHistory(DataClassDictMixin):
+class BurnHistory(BaseDictMixin):
   amount: int
   
 @dataclass
-class OutgoingHistory(DataClassDictMixin):
+class OutgoingHistory(BaseDictMixin):
   to: str
   
 @dataclass()
-class IncomingHistory(DataClassDictMixin):
+class IncomingHistory(BaseDictMixin):
   sender: str = field(metadata=field_options(alias="from"))
 
 @dataclass
-class DevFeeHistory(DataClassDictMixin):
+class DevFeeHistory(BaseDictMixin):
   reward: int
 
 @dataclass
-class AccountHistory(DataClassDictMixin):
+class AccountHistory(BaseDictMixin):
   topoheight: int
   block_timestamp: int
   hash: str
@@ -252,7 +252,7 @@ class AccountHistory(DataClassDictMixin):
   dev_fee: Optional[MiningHistory] = None
 
 @dataclass
-class Peer:
+class Peer(BaseDictMixin):
   id: int
   cumulative_difficulty: str
   connected_on: int
@@ -268,52 +268,52 @@ class Peer:
   tag: Optional[str] = None
 
 @dataclass
-class GetPeersResult(DataClassDictMixin):
+class GetPeersResult(BaseDictMixin):
   peers: list[Peer]
   total_peers: int
   hidden_peers: int
   
 @dataclass
-class Fee(DataClassDictMixin):
+class Fee(BaseDictMixin):
   fee_percentage: int
   height: int
   
 @dataclass
-class SizeOnDisk(DataClassDictMixin):
+class SizeOnDisk(BaseDictMixin):
   size_bytes: int
   size_formatted: str
   
 @dataclass
-class IsTxExecutedInBlockParams(DataClassDictMixin):
+class IsTxExecutedInBlockParams(BaseDictMixin):
   tx_hash: str
   block_hash: str
   
 @dataclass
-class IsAccountRegisteredParams(DataClassDictMixin):
+class IsAccountRegisteredParams(BaseDictMixin):
   address: str
   in_stable_height: bool
   
 @dataclass
-class GetDifficultyResult(DataClassDictMixin):
+class GetDifficultyResult(BaseDictMixin):
   difficulty: str
   hashrate: str
   hashrate_formatted: str
   
 @dataclass
-class ValidateAddressParams(DataClassDictMixin):
+class ValidateAddressParams(BaseDictMixin):
   address: str
   allow_integrated: bool
   
 @dataclass 
-class ExtractKeyFromAddressParams(DataClassDictMixin):
+class ExtractKeyFromAddressParams(BaseDictMixin):
   address: str
   tx_as_hex: bool
   
 @dataclass 
-class CreateMinerWorkParams(DataClassDictMixin):
+class CreateMinerWorkParams(BaseDictMixin):
   template: str
   address: Optional[str] = None
   
 @dataclass
-class CreateMinerWorkResult(DataClassDictMixin):
+class CreateMinerWorkResult(BaseDictMixin):
   miner_work: str

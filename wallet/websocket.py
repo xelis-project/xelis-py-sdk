@@ -28,23 +28,23 @@ class WalletWS(RPCWS):
     return int(data)
   
   def getAddress(self, params: classes.GetAddressParams):
-    data = self.send(method=methods.GetAddress, params=vars(params))
+    data = self.send(method=methods.GetAddress, params=params.to_dict())
     return str(data)
   
   def splitAddress(self, params: classes.SplitAddressParams):
-    data = self.send(method=methods.SplitAddress, params=vars(params))
+    data = self.send(method=methods.SplitAddress, params=params.to_dict())
     return classes.SplitAddressResult.from_dict(data)
   
   def rescan(self, params: classes.RescanParams):
-    data = self.send(method=methods.Rescan, params=vars(params))
+    data = self.send(method=methods.Rescan, params=params.to_dict())
     return bool(data)
   
   def getBalance(self, params: classes.GetBalanceParams):
-    data = self.send(method=methods.GetBalance, params=vars(params))
+    data = self.send(method=methods.GetBalance, params=params.to_dict())
     return int(data)
   
   def hasBalance(self, params: classes.GetBalanceParams):
-    data = self.send(method=methods.HasBalance, params=vars(params))
+    data = self.send(method=methods.HasBalance, params=params.to_dict())
     return bool(data)
   
   def getTrackedAssets(self):
@@ -53,7 +53,7 @@ class WalletWS(RPCWS):
     return items
   
   def getAssetPrecision(self, params: classes.GetBalanceParams):
-    data = self.send(method=methods.GetAssetPrecision, params=vars(params))
+    data = self.send(method=methods.GetAssetPrecision, params=params.to_dict())
     return int(data)
   
   def getTransaction(self, hash: str):
@@ -61,11 +61,11 @@ class WalletWS(RPCWS):
     return classes.TransactionEntry.from_dict(data)
   
   def buildTransaction(self, params: classes.BuildTransactionParams):
-    data = self.send(method=methods.BuildTransaction, params=vars(params))
+    data = self.send(method=methods.BuildTransaction, params=params.to_dict())
     return classes.BuildTransactionResult.from_dict(data)
   
   def listTransactions(self, params: classes.ListTransactionsParams):
-    data = self.send(method=methods.ListTransactions, params=vars(params))
+    data = self.send(method=methods.ListTransactions, params=params.to_dict())
     items = [classes.TransactionEntry.from_dict(item) for item in data]
     return items
   
@@ -73,8 +73,8 @@ class WalletWS(RPCWS):
     data = self.send(method=methods.IsOnline)
     return bool(data)
   
-  def setOnlineMode(self):
-    data = self.send(method=methods.SetOnlineMode)
+  def setOnlineMode(self, params: classes.SetOnlineModeParams):
+    data = self.send(method=methods.SetOnlineMode, params=params.to_dict())
     return bool(data)
   
   def setOfflineMode(self):
@@ -86,5 +86,5 @@ class WalletWS(RPCWS):
     return str(signature)
   
   def estimateFees(self, params: classes.EstimateFeesParams):
-    data = self.send(method=methods.EstimateFees, params=params)
+    data = self.send(method=methods.EstimateFees, params=params.to_dict())
     return int(data)

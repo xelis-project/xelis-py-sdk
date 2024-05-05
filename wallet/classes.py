@@ -1,82 +1,81 @@
 from dataclasses import dataclass
 from typing import Any, Optional
 import daemon.classes
-
-from mashumaro import DataClassDictMixin
+from rpc.classes import BaseDictMixin
 
 @dataclass
-class GetAddressParams(DataClassDictMixin):
+class GetAddressParams(BaseDictMixin):
   integrated_data: Optional[Any] = None
 
 @dataclass
-class SplitAddressParams(DataClassDictMixin):
+class SplitAddressParams(BaseDictMixin):
   address: str
 
 @dataclass
-class SplitAddressResult(DataClassDictMixin):
+class SplitAddressResult(BaseDictMixin):
   address: str
   integrated_data: Any
   
 @dataclass
-class RescanParams(DataClassDictMixin):
+class RescanParams(BaseDictMixin):
   until_topoheight: int
   
 @dataclass
-class GetBalanceParams(DataClassDictMixin):
+class GetBalanceParams(BaseDictMixin):
   asset: str
   
 @dataclass
-class FeeBuilder(DataClassDictMixin):
+class FeeBuilder(BaseDictMixin):
   multiplier: Optional[float] = None
   value: Optional[int] = None
   
 @dataclass
-class TransferOut(DataClassDictMixin):
+class TransferOut(BaseDictMixin):
   amount: int
   asset: str
   destination: str
   extra_data: Optional[Any] = None
   
 @dataclass
-class TransferIn(DataClassDictMixin):
+class TransferIn(BaseDictMixin):
   amount: int
   asset: str
   extra_data: Optional[Any] = None
   
 @dataclass
-class BuildTransactionParams(DataClassDictMixin):
-  transfers: list[TransferOut]
+class BuildTransactionParams(BaseDictMixin):
   broadcast: bool
-  tx_as_hex: bool
-  fee_builder: Optional[FeeBuilder] = None
+  tx_as_hex: bool = False
+  fee: Optional[FeeBuilder] = None
+  transfers: Optional[list[TransferOut]] = None
   burn: Optional[daemon.classes.Burn] = None
 
 @dataclass
-class Outgoing(DataClassDictMixin):
+class Outgoing(BaseDictMixin):
   fee: int
   nonce: int
   transfers: list[TransferOut]
   
 @dataclass
-class Incoming(DataClassDictMixin):
+class Incoming(BaseDictMixin):
   sender: str
   transfers: list[TransferIn]
   
 @dataclass
-class Coinbase(DataClassDictMixin):
+class Coinbase(BaseDictMixin):
   reward: int
 
 @dataclass
-class TransactionEntry(DataClassDictMixin):
+class TransactionEntry(BaseDictMixin):
   hash: str
   topoheight: int
-  outoing: Optional[Outgoing] = None
+  outgoing: Optional[Outgoing] = None
   incoming: Optional[Incoming] = None
   coinbase: Optional[Coinbase] = None
   burn: Optional[daemon.classes.Burn] = None
   
 @dataclass
-class Transfer(DataClassDictMixin):
+class Transfer(BaseDictMixin):
   asset: str
   destination: list[int]
   commitment: list[int]
@@ -86,12 +85,12 @@ class Transfer(DataClassDictMixin):
   extra_data: Optional[list[int]] = None
 
 @dataclass
-class TransactionData(DataClassDictMixin):
-  transfers: list[Transfer]
+class TransactionData(BaseDictMixin):
+  transfers: Optional[list[Transfer]] = None
   burn: Optional[daemon.classes.Burn] = None
 
 @dataclass
-class BuildTransactionResult(DataClassDictMixin):
+class BuildTransactionResult(BaseDictMixin):
   data: TransactionData
   fee: int
   hash: str
@@ -103,14 +102,14 @@ class BuildTransactionResult(DataClassDictMixin):
   source_commitments: list[daemon.classes.SourceCommitment]
   tx_as_hex: str
   version: str
-  
+
 @dataclass
-class EstimateFeesParams(DataClassDictMixin):
+class EstimateFeesParams(BaseDictMixin):
   transfers: Optional[list[TransferOut]] = None
   burn: Optional[daemon.classes.Burn] = None
   
 @dataclass
-class ListTransactionsParams(DataClassDictMixin):
+class ListTransactionsParams(BaseDictMixin):
   accept_incoming: bool = True
   accept_outgoing: bool = True
   accept_coinbase: bool = True
@@ -118,3 +117,8 @@ class ListTransactionsParams(DataClassDictMixin):
   min_topoheight: Optional[int] = None
   max_topoheight: Optional[int] = None
   address: Optional[str] = None
+  
+@dataclass
+class SetOnlineModeParams(BaseDictMixin):
+  daemon_address: str
+  auto_reconnect: bool = False

@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
-  
+from mashumaro import DataClassDictMixin
+
 @dataclass
-class ApplicationData:
+class ApplicationData(DataClassDictMixin):
   id: str
   name: str
   description: str

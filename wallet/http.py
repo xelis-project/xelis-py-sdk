@@ -29,23 +29,23 @@ class WalletRPC(RPCHttp):
     return int(data)
   
   def getAddress(self, params: classes.GetAddressParams):
-    data = self.fetch(method=methods.GetAddress, params=vars(params))
+    data = self.fetch(method=methods.GetAddress, params=params.to_dict())
     return str(data)
   
   def splitAddress(self, params: classes.SplitAddressParams):
-    data = self.fetch(method=methods.SplitAddress, params=vars(params))
+    data = self.fetch(method=methods.SplitAddress, params=params.to_dict())
     return classes.SplitAddressResult.from_dict(data)
   
   def rescan(self, params: classes.RescanParams):
-    data = self.fetch(method=methods.Rescan, params=vars(params))
+    data = self.fetch(method=methods.Rescan, params=params.to_dict())
     return bool(data)
   
   def getBalance(self, params: classes.GetBalanceParams):
-    data = self.fetch(method=methods.GetBalance, params=vars(params))
+    data = self.fetch(method=methods.GetBalance, params=params.to_dict())
     return int(data)
   
   def hasBalance(self, params: classes.GetBalanceParams):
-    data = self.fetch(method=methods.HasBalance, params=vars(params))
+    data = self.fetch(method=methods.HasBalance, params=params.to_dict())
     return bool(data)
   
   def getTrackedAssets(self):
@@ -54,7 +54,7 @@ class WalletRPC(RPCHttp):
     return items
   
   def getAssetPrecision(self, params: classes.GetBalanceParams):
-    data = self.fetch(method=methods.GetAssetPrecision, params=vars(params))
+    data = self.fetch(method=methods.GetAssetPrecision, params=params.to_dict())
     return int(data)
   
   def getTransaction(self, hash: str):
@@ -62,11 +62,11 @@ class WalletRPC(RPCHttp):
     return classes.TransactionEntry.from_dict(data)
   
   def buildTransaction(self, params: classes.BuildTransactionParams):
-    data = self.fetch(method=methods.BuildTransaction, params=vars(params))
+    data = self.fetch(method=methods.BuildTransaction, params=params.to_dict())
     return classes.BuildTransactionResult.from_dict(data)
   
   def listTransactions(self, params: classes.ListTransactionsParams):
-    data = self.fetch(method=methods.ListTransactions, params=vars(params))
+    data = self.fetch(method=methods.ListTransactions, params=params.to_dict())
     items = [classes.TransactionEntry.from_dict(item) for item in data]
     return items
   
@@ -74,8 +74,8 @@ class WalletRPC(RPCHttp):
     data = self.fetch(method=methods.IsOnline)
     return bool(data)
   
-  def setOnlineMode(self):
-    data = self.fetch(method=methods.SetOnlineMode)
+  def setOnlineMode(self, params: classes.SetOnlineModeParams):
+    data = self.fetch(method=methods.SetOnlineMode, params=params.to_dict())
     return bool(data)
   
   def setOfflineMode(self):
@@ -87,5 +87,5 @@ class WalletRPC(RPCHttp):
     return str(signature)
   
   def estimateFees(self, params: classes.EstimateFeesParams):
-    data = self.fetch(method=methods.EstimateFees, params=params)
+    data = self.fetch(method=methods.EstimateFees, params=params.to_dict())
     return int(data)

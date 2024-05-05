@@ -1,7 +1,6 @@
 import json
-from websockets.sync.client import connect, ClientConnection
-import daemon.methods as methods
-import daemon.classes as classes
+from typing import Any
+from websockets.sync.client import ClientConnection
 
 class RPCWS:
   id: int
@@ -13,7 +12,7 @@ class RPCWS:
     self.client = client
     self.prefix = ""
     
-  def __createRequestMethod(self, method: str, params = None):
+  def __createRequestMethod(self, method: str, params: dict[Any, Any] = None):
     self.id += 1
     data = { "id": self.id, "jsonrpc": "2.0", "method": method }
     if params is not None:

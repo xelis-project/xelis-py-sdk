@@ -34,20 +34,20 @@ class DaemonWS(RPCWS):
     return classes.GetBlockTemplateResult.from_dict(d=data)
     
   def getBlockAtTopoheight(self, params: classes.GetBlockAtTopoheightParams):
-    data = self.send(method=methods.GetBlockAtTopoheight, params=vars(params))
+    data = self.send(method=methods.GetBlockAtTopoheight, params=params.to_dict())
     return classes.Block.from_dict(d=data)
   
   def getBlocksAtHeight(self, params: classes.GetBlocksAtHeightParams):
-    data = self.send(method=methods.GetBlocksAtHeight, params=vars(params))
+    data = self.send(method=methods.GetBlocksAtHeight, params=params.to_dict())
     items = [classes.Block.from_dict(d=item) for item in data]
     return items
   
   def getBlockByHash(self, params: classes.GetBlockByHashParams):
-    data = self.send(method=methods.GetBlockByHash, params=vars(params))
+    data = self.send(method=methods.GetBlockByHash, params=params.to_dict())
     return classes.Block.from_dict(d=data)
   
   def getTopBlock(self, params: classes.GetTopBlockParams):
-    data = self.send(method=methods.GetTopBlock, params=vars(params))
+    data = self.send(method=methods.GetTopBlock, params=params.to_dict())
     return classes.Block.from_dict(d=data)
   
   def getNonce(self, address: str):
@@ -60,20 +60,20 @@ class DaemonWS(RPCWS):
     return bool(exist)
   
   def getNonceAtTopoheight(self, params: classes.GetNonceAtTopoheightParams):
-    data = self.send(method=methods.GetNonceAtTopoheight, params=vars(params))
+    data = self.send(method=methods.GetNonceAtTopoheight, params=params.to_dict())
     return classes.VersionedNonce.from_dict(d=data)
   
   def getBalance(self, params: classes.GetBalanceParams):
-    data = self.send(method=methods.GetBalance, params=vars(params))
+    data = self.send(method=methods.GetBalance, params=params.to_dict())
     return classes.GetBalanceResult.from_dict(d=data)
   
   def hasBalance(self, params: classes.GetBalanceParams):
-    data = self.send(method=methods.HasBalance, params=vars(params))
+    data = self.send(method=methods.HasBalance, params=params.to_dict())
     exist = data["exist"]
     return bool(exist)
   
   def getBalanceAtTopoheight(self, params: classes.GetBalanceAtTopoheightParams):
-    data = self.send(method=methods.GetBalanceAtTopoheight, params=vars(params))
+    data = self.send(method=methods.GetBalanceAtTopoheight, params=params.to_dict())
     return classes.VersionedBalance.from_dict(d=data)
   
   def getAsset(self, asset: str):
@@ -81,7 +81,7 @@ class DaemonWS(RPCWS):
     return classes.Asset.from_dict(d=data)
   
   def getAssets(self, params: str):
-    data = self.send(method=methods.GetAssets, params=vars(params))
+    data = self.send(method=methods.GetAssets, params=params.to_dict())
     items = [classes.AssetWithData.from_dict(d=item) for item in data]
     return items
   
@@ -107,12 +107,12 @@ class DaemonWS(RPCWS):
     return classes.P2PStatusResult.from_dict(d=data)
   
   def getDAGOrder(self, params: classes.GetTopoheightRangeParams):
-    data = self.send(method=methods.GetDAGOrder, params=vars(params))
+    data = self.send(method=methods.GetDAGOrder, params=params.to_dict())
     items = [str(item) for item in data]
     return items
   
   def submitBlock(self, params: classes.SubmitBlockParams):
-    data = self.send(method=methods.SubmitBlock, params=vars(params))
+    data = self.send(method=methods.SubmitBlock, params=params.to_dict())
     return bool(data)
   
   def submitTransaction(self, hexData: str):
@@ -129,22 +129,22 @@ class DaemonWS(RPCWS):
     return classes.Transaction.from_dict(d=data)
   
   def getTransactions(self, params: classes.GetTransactionsParams):
-    data = self.send(method=methods.GetTransactions, params=vars(params))
+    data = self.send(method=methods.GetTransactions, params=params.to_dict())
     items = [classes.Transaction.from_dict(d=item) for item in data]
     return items
   
   def getBlocksRangeByTopoheight(self, params: classes.GetTopoheightRangeParams):
-    data = self.send(method=methods.GetBlocksRangeByTopoheight, params=vars(params))
+    data = self.send(method=methods.GetBlocksRangeByTopoheight, params=params.to_dict())
     items = [classes.Block.from_dict(d=item) for item in data]
     return items
   
   def getBlocksRangeByHeight(self, params: classes.GetHeightRangeParams):
-    data = self.send(method=methods.GetBlocksRangeByHeight, params=vars(params))
+    data = self.send(method=methods.GetBlocksRangeByHeight, params=params.to_dict())
     items = [classes.Block.from_dict(d=item) for item in data]
     return items
   
   def getAccounts(self, params: classes.GetAssetsParams):
-    data = self.send(method=methods.GetAccounts, params=vars(params))
+    data = self.send(method=methods.GetAccounts, params=params.to_dict())
     items = [str(item) for item in data]
     return items
   
@@ -172,7 +172,7 @@ class DaemonWS(RPCWS):
     return classes.SizeOnDisk.from_dict(data)
   
   def isTxExecutedInBlock(self, params: classes.IsTxExecutedInBlockParams):
-    data = self.send(method=methods.IsTxExecutedInBlock, params=vars(params))
+    data = self.send(method=methods.IsTxExecutedInBlock, params=params.to_dict())
     return bool(data)
   
   def getAccountRegistrationTopoheight(self, address: str):
@@ -180,7 +180,7 @@ class DaemonWS(RPCWS):
     return int(data)
   
   def isAccountRegistered(self, params: classes.IsAccountRegisteredParams):
-    data = self.send(method=methods.IsAccountRegistered, params=vars(params))
+    data = self.send(method=methods.IsAccountRegistered, params=params.to_dict())
     return bool(data)
   
   def getDifficulty(self):
@@ -189,13 +189,13 @@ class DaemonWS(RPCWS):
   
     
   def validateAddress(self, params: classes.ValidateAddressParams):
-    data = self.send(method=methods.ValidateAddress, params=vars(params))
+    data = self.send(method=methods.ValidateAddress, params=params.to_dict())
     return bool(data)
   
   def extractKeyFromAddress(self, params: classes.ExtractKeyFromAddressParams):
-    data = self.send(method=methods.ExtractKeyFromAddress, params=vars(params))
+    data = self.send(method=methods.ExtractKeyFromAddress, params=params.to_dict())
     return data
   
   def createMinerWork(self, params: classes.CreateMinerWorkParams):
-    data = self.send(method=methods.CreateMinerWork, params=vars(params))
+    data = self.send(method=methods.CreateMinerWork, params=params.to_dict())
     return classes.CreateMinerWorkResult.from_dict(data)

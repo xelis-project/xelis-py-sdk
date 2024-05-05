@@ -17,7 +17,7 @@ class XSWD():
     self.wallet.prefix = "wallet."
 
   def authorize(self, app: classes.ApplicationData):
-    sendData = json.dumps(vars(app))
+    sendData = json.dumps(app.to_dict())
     self.client.send(sendData)
     recvData = self.client.recv()
     data = json.loads(recvData)

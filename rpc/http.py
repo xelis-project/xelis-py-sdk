@@ -1,5 +1,5 @@
+from typing import Any
 from requests import post
-import base64
 
 class RPCHttp:
   url: str
@@ -7,7 +7,7 @@ class RPCHttp:
   def __init__(self, url: str) -> None:
     self.url = url
 
-  def fetch(self, method: str, params = None, headers = {}):
+  def fetch(self, method: str, params: dict[Any, Any] = None, headers = {}):
     data = {
       "id": 1,
       "jsonrpc": "2.0",
