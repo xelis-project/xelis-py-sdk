@@ -137,14 +137,16 @@ class Block(BaseDictMixin):
   height: int
   miner: str
   nonce: int
-  reward: int
-  supply: int
   timestamp: int
   tips: list[str]
-  topoheight: int
   total_size_in_bytes: int
   txs_hashes: list[str]
   version: int
+  supply: Optional[int] = None
+  dev_reward: Optional[int] = None
+  miner_reward: Optional[int] = None
+  reward: Optional[int] = None
+  topoheight: Optional[int] = None
   total_fees: Optional[int] = None
 
 @dataclass
