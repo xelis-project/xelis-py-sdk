@@ -141,7 +141,7 @@ class Block(BaseDictMixin):
   tips: list[str]
   total_size_in_bytes: int
   txs_hashes: list[str]
-  version: int
+  versions: int
   supply: Optional[int] = None
   dev_reward: Optional[int] = None
   miner_reward: Optional[int] = None
@@ -319,3 +319,9 @@ class CreateMinerWorkParams(BaseDictMixin):
 @dataclass
 class CreateMinerWorkResult(BaseDictMixin):
   miner_work: str
+  
+@dataclass
+class TransactionExecutedResult(BaseDictMixin):
+  block_hash: str
+  topoheight: int
+  tx_hash: str

@@ -1,5 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Optional
+
+from mashumaro import field_options
 import daemon.classes
 from rpc.classes import BaseDictMixin
 
@@ -58,7 +60,7 @@ class Outgoing(BaseDictMixin):
   
 @dataclass
 class Incoming(BaseDictMixin):
-  sender: str
+  sender: str = field(metadata=field_options(alias="from"))
   transfers: list[TransferIn]
   
 @dataclass
@@ -122,3 +124,8 @@ class ListTransactionsParams(BaseDictMixin):
 class SetOnlineModeParams(BaseDictMixin):
   daemon_address: str
   auto_reconnect: bool = False
+  
+@dataclass
+class BalanceChangedResult(BaseDictMixin):
+  asset: str
+  balance: int
