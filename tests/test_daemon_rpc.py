@@ -201,10 +201,10 @@ def test_validateAddress():
   print(result)
   
 def test_extractKeyFromAddress():
-  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=True)
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=True)
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)
   
-  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=False)
+  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=False)
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)

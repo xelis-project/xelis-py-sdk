@@ -182,7 +182,7 @@ class DaemonRPC(RPCHttp):
   
   def validateAddress(self, params: classes.ValidateAddressParams):
     data = self.fetch(method=methods.ValidateAddress, params=params.to_dict())
-    return bool(data)
+    return classes.ValidateAddressResult.from_dict(data)
   
   def extractKeyFromAddress(self, params: classes.ExtractKeyFromAddressParams) -> str | list[int]:
     data = self.fetch(method=methods.ExtractKeyFromAddress, params=params.to_dict())

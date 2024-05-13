@@ -306,10 +306,15 @@ class ValidateAddressParams(BaseDictMixin):
   address: str
   allow_integrated: bool
   
+@dataclass
+class ValidateAddressResult(BaseDictMixin):
+  is_integrated: bool
+  is_valid: bool
+  
 @dataclass 
 class ExtractKeyFromAddressParams(BaseDictMixin):
   address: str
-  tx_as_hex: bool
+  as_hex: bool
   
 @dataclass 
 class CreateMinerWorkParams(BaseDictMixin):

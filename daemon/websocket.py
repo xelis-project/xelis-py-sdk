@@ -188,7 +188,7 @@ class DaemonWS(RPCWS):
   
   async def validateAddress(self, params: classes.ValidateAddressParams):
     data = await self.send(method=methods.ValidateAddress, params=params.to_dict())
-    return bool(data)
+    return classes.ValidateAddressResult.from_dict(data)
   
   async def extractKeyFromAddress(self, params: classes.ExtractKeyFromAddressParams):
     data = await self.send(method=methods.ExtractKeyFromAddress, params=params.to_dict())
