@@ -1,9 +1,10 @@
 import daemon.classes as classes
 from daemon.http import DaemonRPC
-from config.module import TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
+from config.module import LOCAL_NODE_RPC, TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
 
 testnetDaemon = DaemonRPC(url=TESTNET_NODE_RPC)
 mainnetDaemon = DaemonRPC(url=MAINNET_NODE_RPC)
+localDaemon = DaemonRPC(url=LOCAL_NODE_RPC)
 
 TESTNET_ADDR = "xet:rsdm79np9eqar7cg5jy9sdhwas74l4ml5enaasmae8jtjcvpr3vqqnlpysy"
 
@@ -129,7 +130,28 @@ def test_getMempool():
 def test_getTransaction():
   result = mainnetDaemon.getTransaction(hash="33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d")
   print(result)
+
+def test_checkExtraData():
+  # v2
+  result = localDaemon.getTransaction(hash="389426d5f181f2b7e503052bd19bccbad344262ad8d90c39a87aa6d5dbd86669")
+  size = len(result.data.transfers[0].extra_data)
+  print(size)
+
+  # v1
+  result = localDaemon.getTransaction(hash="6d2478c646e629cd944afd0d6232d359e4b652c3b0104cc15c7af2bba90c8fce")
+  size = len(result.data.transfers[0].extra_data)
+  print(size)
   
+  # v1
+  result = localDaemon.getTransaction(hash="067f2b8876cf4bf1e96318f0706bb121116d2138b0396c9dc16319ff315648e7")
+  size = len(result.data.transfers[0].extra_data)
+  print(size)
+  
+  # v2
+  result = localDaemon.getTransaction(hash="009247c48a4e4a03f4c69dadaf1279103ed1d7ff2b2c3d98c3a7b2911d8d69fd")
+  size = len(result.data.transfers[0].extra_data)
+  print(size)
+
 def test_getTransactions():
   params = classes.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
   result = mainnetDaemon.getTransactions(params=params)

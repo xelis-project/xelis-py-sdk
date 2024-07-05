@@ -102,3 +102,11 @@ def test_estimateFees():
   )
   data = localWallet.estimateFees(params=params)
   print(data)
+  
+def test_integratedAddr():
+  params = classes.GetAddressParams(
+    integrated_data="v3"
+  )
+  
+  addr = localWallet.getAddress(params=params)
+  print(addr)
