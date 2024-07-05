@@ -11,7 +11,11 @@ Install library with PIP.
 ## Usage
 
 ```python
+from xelis.daemon.http import DaemonRPC
+from xelis.config.module import MAINNET_NODE_RPC
 
+mainnetDaemon = DaemonRPC(url=MAINNET_NODE_RPC)
+data = mainnetDaemon.getInfo()
 ```
 
 Check test files for more examples ex: `tests/test_daemon_rpc.py`.
