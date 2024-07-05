@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
   name="xelis-py-sdk",
-  version="0.2.0",
+  version="0.3.0",
   packages=find_packages(),
   author="g45t345rt",
   description="Xelis software development kit for Python",
