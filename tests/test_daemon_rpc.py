@@ -1,6 +1,6 @@
-import daemon.classes as classes
-from daemon.http import DaemonRPC
-from config.module import LOCAL_NODE_RPC, TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
+import xelis.daemon.classes as classes
+from xelis.daemon.http import DaemonRPC
+from xelis.config.module import LOCAL_NODE_RPC, TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
 
 testnetDaemon = DaemonRPC(url=TESTNET_NODE_RPC)
 mainnetDaemon = DaemonRPC(url=MAINNET_NODE_RPC)
@@ -230,3 +230,4 @@ def test_extractKeyFromAddress():
   params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=False)
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)
+  

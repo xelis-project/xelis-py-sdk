@@ -1,6 +1,6 @@
-from config.module import LOCAL_XSWD_WS
-from xswd.classes import ApplicationData
-from xswd.module import XSWD
+from xelis.config.module import LOCAL_XSWD_WS
+from xelis.xswd.classes import ApplicationData
+from xelis.xswd.module import XSWD
 
 def test_xswd():
   xswd = XSWD(LOCAL_XSWD_WS)

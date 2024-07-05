@@ -1,7 +1,6 @@
-from config.module import LOCAL_WALLET_RPC, XELIS_ASSET
-from wallet import classes
-import daemon.classes
-from wallet.http import WalletRPC
+from xelis.config.module import LOCAL_WALLET_RPC, XELIS_ASSET
+from xelis.wallet import classes
+from xelis.wallet.http import WalletRPC
 
 localWallet = WalletRPC(url=LOCAL_WALLET_RPC, username="test", password="test")
 

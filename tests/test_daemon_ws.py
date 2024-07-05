@@ -1,9 +1,9 @@
 import asyncio
 import pytest
-from config.module import TESTNET_NODE_WS, XELIS_ASSET, MAINNET_NODE_WS
-from daemon import events
-from daemon.websocket import ConnectDaemonWS, DaemonWS
-import daemon.classes as classes
+from xelis.config.module import TESTNET_NODE_WS, XELIS_ASSET, MAINNET_NODE_WS
+from xelis.daemon import events
+from xelis.daemon.websocket import ConnectDaemonWS, DaemonWS
+import xelis.daemon.classes as classes
 
 TESTNET_ADDR = "xet:rsdm79np9eqar7cg5jy9sdhwas74l4ml5enaasmae8jtjcvpr3vqqnlpysy"
 

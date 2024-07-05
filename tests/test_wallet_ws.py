@@ -1,8 +1,7 @@
 import pytest
-import daemon
-from wallet import classes, events
-from wallet.websocket import ConnectWalletWS
-from config.module import LOCAL_WALLET_WS, XELIS_ASSET
+from xelis.wallet import classes, events
+from xelis.wallet.websocket import ConnectWalletWS
+from xelis.config.module import LOCAL_WALLET_WS, XELIS_ASSET
 
 username = "test"
 password = "test"
