@@ -6,7 +6,7 @@ Xelis software development kit for Python.
 
 Install library with PIP.
 
-`pip install @xelis/sdk`
+`pip install xelis-py-sdk`
 
 ## Usage
 
