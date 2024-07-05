@@ -1,4 +1,4 @@
-import xelis.daemon.classes as classes
+import xelis.daemon.classes as daemonClasses
 from xelis.daemon.http import DaemonRPC
 from xelis.config.module import LOCAL_NODE_RPC, TESTNET_NODE_RPC, MAINNET_NODE_RPC, XELIS_ASSET
 
@@ -40,22 +40,22 @@ def test_getBlockTemplate():
   print(result)
   
 def test_getBlockAtTopoheight():
-  params = classes.GetBlockAtTopoheightParams(topoheight=0, include_txs=False)
+  params = daemonClasses.GetBlockAtTopoheightParams(topoheight=0, include_txs=False)
   result = testnetDaemon.getBlockAtTopoheight(params=params)
   print(result)
 
 def test_getBlocksAtHeight():
-  params = classes.GetBlocksAtHeightParams(height=0, include_txs=False)
+  params = daemonClasses.GetBlocksAtHeightParams(height=0, include_txs=False)
   result = testnetDaemon.getBlocksAtHeight(params=params)
   print(result)
 
 def test_getBlockByHash():
-  params = classes.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False)
+  params = daemonClasses.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False)
   result = testnetDaemon.getBlockByHash(params=params)
   print(result)
   
 def test_getTopBlock():
-  params = classes.GetTopBlockParams(include_txs=False)
+  params = daemonClasses.GetTopBlockParams(include_txs=False)
   result = testnetDaemon.getTopBlock(params=params)
   print(result)
   
@@ -68,22 +68,22 @@ def test_hasNonce():
   print(result)
   
 def test_getNonceAtTopoheight():
-  params = classes.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632)
+  params = daemonClasses.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632)
   result = testnetDaemon.getNonceAtTopoheight(params=params)
   print(result)
   
 def test_getBalance():
-  params = classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
+  params = daemonClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
   result = testnetDaemon.getBalance(params=params)
   print(result)
   
 def test_hasBalance():
-  params = classes.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
+  params = daemonClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
   result = testnetDaemon.hasBalance(params=params)
   print(result)
   
 def test_getBalancecAtTopoheight():
-  params = classes.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632)
+  params = daemonClasses.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632)
   result = testnetDaemon.getBalanceAtTopoheight(params=params)
   print(result)
   
@@ -92,7 +92,7 @@ def test_getAsset():
   print(result)
   
 def test_getAssets():
-  params = classes.GetAssetsParams()
+  params = daemonClasses.GetAssetsParams()
   result = testnetDaemon.getAssets(params=params)
   print(result)
   
@@ -117,7 +117,7 @@ def test_p2pStatus():
   print(result)
   
 def test_getDAGOrder():
-  result = testnetDaemon.getDAGOrder(params=classes.GetTopoheightRangeParams(
+  result = testnetDaemon.getDAGOrder(params=daemonClasses.GetTopoheightRangeParams(
     start_topoheight=0,
     end_topoheight=1
   ))
@@ -153,22 +153,22 @@ def test_checkExtraData():
   print(size)
 
 def test_getTransactions():
-  params = classes.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
+  params = daemonClasses.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
   result = mainnetDaemon.getTransactions(params=params)
   print(result)
   
 def test_getBlocksRangeByTopoheight():
-  params = classes.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=10)
+  params = daemonClasses.GetTopoheightRangeParams(start_topoheight=0, end_topoheight=10)
   result = testnetDaemon.getBlocksRangeByTopoheight(params=params)
   print(result)
   
 def test_getBlocksRangeByHeight():
-  params = classes.GetHeightRangeParams(start_height=0, end_height=10)
+  params = daemonClasses.GetHeightRangeParams(start_height=0, end_height=10)
   result = testnetDaemon.getBlocksRangeByHeight(params=params)
   print(result)
   
 def test_getAcounts():
-  params = classes.GetAssetsParams()
+  params = daemonClasses.GetAssetsParams()
   result = testnetDaemon.getAccounts(params=params)
   print(result)
   
@@ -197,7 +197,7 @@ def test_getSizeOnDisk():
   print(result)
   
 def test_isTxExecutedInBlock():
-  params = classes.IsTxExecutedInBlockParams(
+  params = daemonClasses.IsTxExecutedInBlockParams(
     block_hash="f61a3e037b4c8ae8aff2ace3a499a6f552ccd4ddaabd2e2067fec20c0da71d8c", 
     tx_hash="c743d8d822cd553672f8f534ed71277e8e50cfa37af9826a1ee1e922f059b019",
   )
@@ -209,7 +209,7 @@ def test_getAccountRegistrationTopoheight():
   print(result)
   
 def test_isAccountRegistered():
-  params = classes.IsAccountRegisteredParams(address=TESTNET_ADDR, in_stable_height=True)
+  params = daemonClasses.IsAccountRegisteredParams(address=TESTNET_ADDR, in_stable_height=True)
   result = testnetDaemon.isAccountRegistered(params=params)
   print(result)
 
@@ -218,16 +218,16 @@ def test_getDifficulty():
   print(result)
   
 def test_validateAddress():
-  params = classes.ValidateAddressParams(address=TESTNET_ADDR, allow_integrated=False)
+  params = daemonClasses.ValidateAddressParams(address=TESTNET_ADDR, allow_integrated=False)
   result = testnetDaemon.validateAddress(params=params)
   print(result)
   
 def test_extractKeyFromAddress():
-  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=True)
+  params = daemonClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=True)
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)
   
-  params = classes.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=False)
+  params = daemonClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=False)
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)
   

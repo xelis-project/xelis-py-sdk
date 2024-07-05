@@ -1,5 +1,6 @@
+from xelis.daemon import classes as daemonClasses
 from xelis.config.module import LOCAL_WALLET_RPC, XELIS_ASSET
-from xelis.wallet import classes
+from xelis.wallet import classes as walletClasses
 from xelis.wallet.http import WalletRPC
 
 localWallet = WalletRPC(url=LOCAL_WALLET_RPC, username="test", password="test")
@@ -21,31 +22,31 @@ def test_getTopoheight():
   print(data)
   
 def test_getAddress():
-  params = classes.GetAddressParams()
+  params = walletClasses.GetAddressParams()
   data = localWallet.getAddress(params=params)
   print(data)
   
 def test_splitAddress():
-  params = classes.GetAddressParams(integrated_data={ "hello": "world" })
+  params = walletClasses.GetAddressParams(integrated_data={ "hello": "world" })
   integratedAddr = localWallet.getAddress(params=params)
   print(integratedAddr)
 
-  params = classes.SplitAddressParams(address=integratedAddr)
+  params = walletClasses.SplitAddressParams(address=integratedAddr)
   data = localWallet.splitAddress(params=params)
   print(data)
 
 def test_rescan():
-  params = classes.RescanParams(until_topoheight=0)
+  params = walletClasses.RescanParams(until_topoheight=0)
   data = localWallet.rescan(params=params)
   print(data)
 
 def test_getBalance():
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = localWallet.getBalance(params=params)
   print(data)
   
 def test_hasBalance():
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = localWallet.hasBalance(params=params)
   print(data)
   
@@ -54,7 +55,7 @@ def test_getTrackedAssets():
   print(data)
   
 def test_getAssetPrecision():
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = localWallet.getAssetPrecision(params=params)
   print(data)
   
@@ -63,17 +64,17 @@ def test_getTransaction():
   print(data)
   
 def test_buildTransaction():
-  params = classes.BuildTransactionParams(
+  params = walletClasses.BuildTransactionParams(
     broadcast=False,
     tx_as_hex=True,
     #transfers=[],
-    burn=daemon.classes.Burn(asset=XELIS_ASSET, amount=0)
+    burn=daemonClasses.Burn(asset=XELIS_ASSET, amount=0)
   )
   data = localWallet.buildTransaction(params=params)
   print(data)
   
 def test_listTransactions():
-  params = classes.ListTransactionsParams()
+  params = walletClasses.ListTransactionsParams()
   data = localWallet.listTransactions(params=params)
   print(data)
   
@@ -82,7 +83,7 @@ def test_isOnline():
   print(data)
   
 def test_setOnlineMode():
-  params = classes.SetOnlineModeParams(daemon_address="127.0.0.1:8080")
+  params = walletClasses.SetOnlineModeParams(daemon_address="127.0.0.1:8080")
   data = localWallet.setOnlineMode(params=params)
   print(data)
   
@@ -95,7 +96,7 @@ def test_signData():
   print(data)
   
 def test_estimateFees():
-  params = classes.EstimateFeesParams(
+  params = walletClasses.EstimateFeesParams(
     transfers=[],
     #burn=daemon.classes.Burn(asset=XELIS_ASSET, amount=0)
   )
@@ -103,7 +104,7 @@ def test_estimateFees():
   print(data)
   
 def test_integratedAddr():
-  params = classes.GetAddressParams(
+  params = walletClasses.GetAddressParams(
     integrated_data="v3"
   )
   

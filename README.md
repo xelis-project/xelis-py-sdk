@@ -13,3 +13,5 @@ Install library with PIP.
 ```python
 
 ```
+
+Check test files for more examples ex: `tests/test_daemon_rpc.py`.

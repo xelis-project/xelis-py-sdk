@@ -1,5 +1,6 @@
 import pytest
-from xelis.wallet import classes, events
+from xelis.daemon import classes as daemonClasses
+from xelis.wallet import classes as walletClasses, events
 from xelis.wallet.websocket import ConnectWalletWS
 from xelis.config.module import LOCAL_WALLET_WS, XELIS_ASSET
 
@@ -37,7 +38,7 @@ async def test_getTopoheight():
 @pytest.mark.asyncio
 async def test_getAddress():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.GetAddressParams()
+  params = walletClasses.GetAddressParams()
   data = await wallet.getAddress(params=params)
   print(data)
   await wallet.close()
@@ -45,11 +46,11 @@ async def test_getAddress():
 @pytest.mark.asyncio
 async def test_splitAddress():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.GetAddressParams(integrated_data={ "hello": "world" })
+  params = walletClasses.GetAddressParams(integrated_data={ "hello": "world" })
   integratedAddr = await wallet.getAddress(params=params)
   print(integratedAddr)
 
-  params = classes.SplitAddressParams(address=integratedAddr)
+  params = walletClasses.SplitAddressParams(address=integratedAddr)
   data = await wallet.splitAddress(params=params)
   print(data)
   await wallet.close()
@@ -57,7 +58,7 @@ async def test_splitAddress():
 @pytest.mark.asyncio
 async def test_rescan():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.RescanParams(until_topoheight=0)
+  params = walletClasses.RescanParams(until_topoheight=0)
   data = await wallet.rescan(params=params)
   print(data)
   await wallet.close()
@@ -65,7 +66,7 @@ async def test_rescan():
 @pytest.mark.asyncio
 async def test_getBalance():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = await wallet.getBalance(params=params)
   print(data)
   await wallet.close()
@@ -73,7 +74,7 @@ async def test_getBalance():
 @pytest.mark.asyncio
 async def test_hasBalance():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = await wallet.hasBalance(params=params)
   print(data)
   await wallet.close()
@@ -88,7 +89,7 @@ async def test_getTrackedAssets():
 @pytest.mark.asyncio
 async def test_getAssetPrecision():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.GetBalanceParams(asset=XELIS_ASSET)
+  params = walletClasses.GetBalanceParams(asset=XELIS_ASSET)
   data = await wallet.getAssetPrecision(params=params)
   print(data)
   await wallet.close()
@@ -103,11 +104,11 @@ async def test_getTransaction():
 @pytest.mark.asyncio
 async def test_buildTransaction():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.BuildTransactionParams(
+  params = walletClasses.BuildTransactionParams(
     broadcast=False,
     tx_as_hex=True,
     #transfers=[],
-    burn=daemon.classes.Burn(asset=XELIS_ASSET, amount=0)
+    burn=daemonClasses.Burn(asset=XELIS_ASSET, amount=0)
   )
   data = await wallet.buildTransaction(params=params)
   print(data)
@@ -116,7 +117,7 @@ async def test_buildTransaction():
 @pytest.mark.asyncio
 async def test_listTransactions():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.ListTransactionsParams()
+  params = walletClasses.ListTransactionsParams()
   data = await wallet.listTransactions(params=params)
   print(data)
   await wallet.close()
@@ -131,7 +132,7 @@ async def test_isOnline():
 @pytest.mark.asyncio
 async def test_setOnlineMode():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.SetOnlineModeParams(daemon_address="127.0.0.1:8080")
+  params = walletClasses.SetOnlineModeParams(daemon_address="127.0.0.1:8080")
   data = await wallet.setOnlineMode(params=params)
   print(data)
   await wallet.close()
@@ -155,7 +156,7 @@ async def test_signData():
 @pytest.mark.asyncio
 async def test_estimateFees():
   wallet = await ConnectWalletWS(url=LOCAL_WALLET_WS, username=username, password=password)
-  params = classes.EstimateFeesParams(
+  params = walletClasses.EstimateFeesParams(
     transfers=[],
     #burn=daemon.classes.Burn(asset=XELIS_ASSET, amount=0)
   )
