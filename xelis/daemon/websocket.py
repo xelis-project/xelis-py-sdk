@@ -24,8 +24,8 @@ class DaemonWS(RPCWS):
     data = await self.send(method=methods.GetTopoheight)
     return int(data)
   
-  async def getStableheight(self):
-    data = await self.send(method=methods.GetStableheight)
+  async def getStableHeight(self):
+    data = await self.send(method=methods.GetStableHeight)
     return int(data)
     
   async def getBlockTemplate(self, address: str):

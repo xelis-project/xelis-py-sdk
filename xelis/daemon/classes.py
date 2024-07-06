@@ -141,7 +141,7 @@ class Block(BaseDictMixin):
   tips: list[str]
   total_size_in_bytes: int
   txs_hashes: list[str]
-  versions: int
+  versions: int = None
   supply: Optional[int] = None
   dev_reward: Optional[int] = None
   miner_reward: Optional[int] = None

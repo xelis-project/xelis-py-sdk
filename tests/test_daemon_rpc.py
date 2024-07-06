@@ -6,7 +6,7 @@ testnetDaemon = DaemonRPC(url=TESTNET_NODE_RPC)
 mainnetDaemon = DaemonRPC(url=MAINNET_NODE_RPC)
 localDaemon = DaemonRPC(url=LOCAL_NODE_RPC)
 
-TESTNET_ADDR = "xet:rsdm79np9eqar7cg5jy9sdhwas74l4ml5enaasmae8jtjcvpr3vqqnlpysy"
+TESTNET_ADDR = "xet:62wnkswt0rmrdd9d2lawgpzuh87fkpmp4gx9j3g4u24yrdkdxgksqnuuucf"
 
 def test_noConnect():
   try:
@@ -31,8 +31,8 @@ def test_getTopoheight():
   result = testnetDaemon.getTopoheight()
   print(result)
   
-def test_getStableheight():
-  result = testnetDaemon.getStableheight()
+def test_getStableHeight():
+  result = testnetDaemon.getStableHeight()
   print(result)
   
 def test_getBlockTemplate():
@@ -50,7 +50,7 @@ def test_getBlocksAtHeight():
   print(result)
 
 def test_getBlockByHash():
-  params = daemonClasses.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False)
+  params = daemonClasses.GetBlockByHashParams(hash="b0086a1d89215d306ac5e48ae9333c8b91ea7d4263851df1deb42b04a30549bf", include_txs=False)
   result = testnetDaemon.getBlockByHash(params=params)
   print(result)
   
@@ -68,7 +68,7 @@ def test_hasNonce():
   print(result)
   
 def test_getNonceAtTopoheight():
-  params = daemonClasses.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632)
+  params = daemonClasses.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=38665)
   result = testnetDaemon.getNonceAtTopoheight(params=params)
   print(result)
   
@@ -83,7 +83,7 @@ def test_hasBalance():
   print(result)
   
 def test_getBalancecAtTopoheight():
-  params = daemonClasses.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632)
+  params = daemonClasses.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=38665)
   result = testnetDaemon.getBalanceAtTopoheight(params=params)
   print(result)
   

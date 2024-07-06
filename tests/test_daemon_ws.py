@@ -2,10 +2,10 @@ import asyncio
 import pytest
 from xelis.config.module import TESTNET_NODE_WS, XELIS_ASSET, MAINNET_NODE_WS
 from xelis.daemon import events
-from xelis.daemon.websocket import ConnectDaemonWS, DaemonWS
+from xelis.daemon.websocket import ConnectDaemonWS
 import xelis.daemon.classes as walletClasses
 
-TESTNET_ADDR = "xet:rsdm79np9eqar7cg5jy9sdhwas74l4ml5enaasmae8jtjcvpr3vqqnlpysy"
+TESTNET_ADDR = "xet:62wnkswt0rmrdd9d2lawgpzuh87fkpmp4gx9j3g4u24yrdkdxgksqnuuucf"
 
 @pytest.mark.asyncio
 async def test_getInfo():
@@ -66,7 +66,7 @@ async def test_getBlocksAtHeight():
 @pytest.mark.asyncio
 async def test_getBlockByHash():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
-  data = await daemon.getBlockByHash(walletClasses.GetBlockByHashParams(hash="6d51e50e6f864c844726f92e6d2d7d5d09f6e78921c1269f8796943eec7db98a", include_txs=False))
+  data = await daemon.getBlockByHash(walletClasses.GetBlockByHashParams(hash="937452cbb28a28ab9b4359735e8c9a01aa4c69eb8824aa4af57dd5a7c04dc4c7", include_txs=False))
   print(data)
   await daemon.close()
   
@@ -94,7 +94,7 @@ async def test_hasNonce():
 @pytest.mark.asyncio
 async def test_getNonceAtTopoheight():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
-  data = await daemon.getNonceAtTopoheight(params=walletClasses.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=632))
+  data = await daemon.getNonceAtTopoheight(params=walletClasses.GetNonceAtTopoheightParams(address=TESTNET_ADDR, topoheight=38665))
   print(data)
   await daemon.close()
   
@@ -115,7 +115,7 @@ async def test_hasBalance():
 @pytest.mark.asyncio
 async def test_getBalanceAtTopoheight():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
-  data = await daemon.getBalanceAtTopoheight(params=walletClasses.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=632))
+  data = await daemon.getBalanceAtTopoheight(params=walletClasses.GetBalanceAtTopoheightParams(address=TESTNET_ADDR, asset=XELIS_ASSET, topoheight=38665))
   print(data)
   await daemon.close()
   
@@ -184,14 +184,14 @@ async def test_getMempool():
   
 @pytest.mark.asyncio
 async def test_getTransaction():
-  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  daemon = await ConnectDaemonWS(url=MAINNET_NODE_WS)
   data = await daemon.getTransaction(hash="33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d")
   print(data)
   await daemon.close()
   
 @pytest.mark.asyncio
 async def test_getTransactions():
-  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  daemon = await ConnectDaemonWS(url=MAINNET_NODE_WS)
   params = walletClasses.GetTransactionsParams(tx_hashes=["33b14221e79c0083e90141b22023d053d112f24ffc0d03d676291d19302ed03d"])
   data = await daemon.getTransactions(params=params)
   print(data)
@@ -223,7 +223,7 @@ async def test_getAcounts():
   
 @pytest.mark.asyncio
 async def test_getAccountHistory():
-  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  daemon = await ConnectDaemonWS(url=MAINNET_NODE_WS)
   #dev fee wallet
   result = await daemon.getAccountHistory(address="xel:vs3mfyywt0fjys0rgslue7mm4wr23xdgejsjk0ld7f2kxng4d4nqqnkdufz")
   print(result)
@@ -241,8 +241,8 @@ async def test_getAccountAssets():
   
 @pytest.mark.asyncio
 async def test_getPeers():
-  daemon = DaemonWS(url=MAINNET_NODE_WS)
-  result = await daemon.getPeers()
+  daemon = await ConnectDaemonWS(url=MAINNET_NODE_WS)
+  result = daemon.getPeers()
   print(result)
   await daemon.close()
   
@@ -266,7 +266,7 @@ async def test_isTxExecutedInBlock():
     block_hash="f61a3e037b4c8ae8aff2ace3a499a6f552ccd4ddaabd2e2067fec20c0da71d8c", 
     tx_hash="c743d8d822cd553672f8f534ed71277e8e50cfa37af9826a1ee1e922f059b019",
   )
-  daemon = DaemonWS(url=MAINNET_NODE_WS)
+  daemon = await ConnectDaemonWS(url=MAINNET_NODE_WS)
   result = await daemon.isTxExecutedInBlock(params=params)
   print(result)
   await daemon.close()
@@ -303,12 +303,12 @@ async def test_validateAddress():
   
 @pytest.mark.asyncio
 async def test_extractKeyFromAddress():
-  params = walletClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=True)
+  params = walletClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=True)
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
   result = await daemon.extractKeyFromAddress(params)
   print(result)
   
-  params = walletClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, tx_as_hex=False)
+  params = walletClasses.ExtractKeyFromAddressParams(address=TESTNET_ADDR, as_hex=False)
   result = await daemon.extractKeyFromAddress(params)
   print(result)
   await daemon.close()

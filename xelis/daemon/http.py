@@ -18,8 +18,8 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.GetTopoheight)
     return int(data)
   
-  def getStableheight(self) -> int:
-    data = self.fetch(method=methods.GetStableheight)
+  def getStableHeight(self) -> int:
+    data = self.fetch(method=methods.GetStableHeight)
     return int(data)
   
   def getBlockTemplate(self, address: str):
