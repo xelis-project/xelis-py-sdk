@@ -31,6 +31,10 @@ def test_getTopoheight():
   result = testnetDaemon.getTopoheight()
   print(result)
   
+def test_getStableTopoheight():
+  result = testnetDaemon.getStableTopoheight()
+  print(result)
+  
 def test_getStableHeight():
   result = testnetDaemon.getStableHeight()
   print(result)

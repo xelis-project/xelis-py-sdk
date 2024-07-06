@@ -24,6 +24,10 @@ class DaemonWS(RPCWS):
     data = await self.send(method=methods.GetTopoheight)
     return int(data)
   
+  async def getStableTopoheight(self):
+    data = await self.send(method=methods.GetStableTopoheight)
+    return int(data)
+  
   async def getStableHeight(self):
     data = await self.send(method=methods.GetStableHeight)
     return int(data)

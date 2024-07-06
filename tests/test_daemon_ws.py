@@ -34,7 +34,14 @@ async def test_getTopoheight():
   data = await daemon.getTopoheight()
   print(data)
   await daemon.close()
-    
+  
+@pytest.mark.asyncio
+async def test_getStableTopoheight():
+  daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
+  data = await daemon.getStableTopoheight()
+  print(data)
+  await daemon.close()
+
 @pytest.mark.asyncio
 async def test_getStableheight():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)

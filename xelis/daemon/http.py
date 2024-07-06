@@ -17,6 +17,10 @@ class DaemonRPC(RPCHttp):
   def getTopoheight(self) -> int:
     data = self.fetch(method=methods.GetTopoheight)
     return int(data)
+
+  def getStableTopoheight(self) -> int:
+    data = self.fetch(method=methods.GetStableTopoheight)
+    return int(data)
   
   def getStableHeight(self) -> int:
     data = self.fetch(method=methods.GetStableHeight)
