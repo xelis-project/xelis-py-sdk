@@ -89,6 +89,12 @@ class VersionedBalance(BaseDictMixin):
 class GetBalanceResult(BaseDictMixin):
   version: VersionedBalance
   topoheight: int
+  
+@dataclass
+class GetStableBalanceResult(BaseDictMixin):
+  stable_topoheight: int
+  stable_block_hash: str
+  version: VersionedBalance
 
 @dataclass
 class GetAssetsParams(BaseDictMixin):

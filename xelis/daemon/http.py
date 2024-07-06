@@ -60,6 +60,10 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.GetBalance, params=params.to_dict())
     return classes.GetBalanceResult.from_dict(d=data)
   
+  def getStableBalance(self, params: classes.GetBalanceParams):
+    data = self.fetch(method=methods.GetStableBalance, params=params.to_dict())
+    return classes.GetStableBalanceResult.from_dict(d=data)
+
   def hasBalance(self, params: classes.GetBalanceParams):
     data = self.fetch(method=methods.HasBalance, params=params.to_dict())
     exist = data["exist"]

@@ -77,6 +77,11 @@ def test_getBalance():
   result = testnetDaemon.getBalance(params=params)
   print(result)
   
+def test_getStableBalance():
+  params = daemonClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
+  result = testnetDaemon.getStableBalance(params=params)
+  print(result)
+  
 def test_hasBalance():
   params = daemonClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET)
   result = testnetDaemon.hasBalance(params=params)

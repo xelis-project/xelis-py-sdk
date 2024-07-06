@@ -66,6 +66,10 @@ class DaemonWS(RPCWS):
     data = await self.send(method=methods.GetBalance, params=params.to_dict())
     return classes.GetBalanceResult.from_dict(d=data)
   
+  async def getStableBalance(self, params: classes.GetBalanceParams):
+    data = await self.send(method=methods.GetStableBalance, params=params.to_dict())
+    return classes.GetStableBalanceResult.from_dict(d=data)
+
   async def hasBalance(self, params: classes.GetBalanceParams):
     data = await self.send(method=methods.HasBalance, params=params.to_dict())
     exist = data["exist"]

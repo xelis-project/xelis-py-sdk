@@ -38,7 +38,7 @@ async def test_getTopoheight():
 @pytest.mark.asyncio
 async def test_getStableheight():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
-  data = await daemon.getStableheight()
+  data = await daemon.getStableHeight()
   print(data)
   await daemon.close()
     
@@ -102,6 +102,13 @@ async def test_getNonceAtTopoheight():
 async def test_getBalance():
   daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
   data = await daemon.getBalance(params=walletClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET))
+  print(data)
+  await daemon.close()
+  
+@pytest.mark.asyncio
+async def test_getStableBalance():
+  daemon = await ConnectDaemonWS(url=TESTNET_NODE_WS)
+  data = await daemon.getStableBalance(params=walletClasses.GetBalanceParams(address=TESTNET_ADDR, asset=XELIS_ASSET))
   print(data)
   await daemon.close()
   
