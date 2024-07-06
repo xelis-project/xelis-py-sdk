@@ -1,5 +1,4 @@
-from typing import Optional
-from websockets.client import connect, WebSocketClientProtocol
+from websockets.client import connect
 from daemon import classes, events, methods
 from rpc.websocket import RPCWS
 

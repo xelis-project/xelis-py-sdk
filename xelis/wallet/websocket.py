@@ -1,8 +1,7 @@
 from websockets.client import connect
-import daemon.classes
+import daemon.classes as daemonClasses
 from rpc.websocket import RPCWS
 from wallet import classes, methods, events
-import daemon
 from rpc.util import createBasicAuthToken
 
 async def ConnectWalletWS(url: str, username: str, password: str):
@@ -97,7 +96,7 @@ class WalletWS(RPCWS):
   async def onNewAsset(self):
     result = await self.listenEvent(events.NewAsset)
     if result is not None:
-      return daemon.classes.AssetWithData.from_dict(result)
+      return daemonClasses.AssetWithData.from_dict(result)
     
   async def onNewTopoheight(self):
     result = await self.listenEvent(events.NewTopoHeight)
