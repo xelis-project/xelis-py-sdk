@@ -196,6 +196,6 @@ class DaemonRPC(RPCHttp):
     data = self.fetch(method=methods.ExtractKeyFromAddress, params=params.to_dict())
     return data
   
-  def createMinerWork(self, params: classes.CreateMinerWorkParams):
-    data = self.fetch(method=methods.CreateMinerWork, params=params.to_dict())
-    return classes.CreateMinerWorkResult.from_dict(data)
+  def getMinerWork(self, params: classes.GetMinerWorkParams):
+    data = self.fetch(method=methods.GetMinerWork, params=params.to_dict())
+    return classes.GetMinerWorkResult.from_dict(data)

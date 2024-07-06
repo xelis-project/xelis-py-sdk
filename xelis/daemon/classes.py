@@ -323,12 +323,16 @@ class ExtractKeyFromAddressParams(BaseDictMixin):
   as_hex: bool
   
 @dataclass 
-class CreateMinerWorkParams(BaseDictMixin):
+class GetMinerWorkParams(BaseDictMixin):
   template: str
   address: Optional[str] = None
   
 @dataclass
-class CreateMinerWorkResult(BaseDictMixin):
+class GetMinerWorkResult(BaseDictMixin):
+  algorithm: str
+  height: int
+  difficulty: str
+  topoheight: int
   miner_work: str
   
 @dataclass

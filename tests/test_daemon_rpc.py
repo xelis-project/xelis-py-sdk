@@ -240,3 +240,7 @@ def test_extractKeyFromAddress():
   result = testnetDaemon.extractKeyFromAddress(params)
   print(result)
   
+def test_getMinerWork():
+  data = testnetDaemon.getBlockTemplate(TESTNET_ADDR)
+  result = testnetDaemon.getMinerWork(params=daemonClasses.GetMinerWorkParams(template=data.template))
+  print(result)

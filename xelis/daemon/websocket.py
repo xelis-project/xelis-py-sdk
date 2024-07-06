@@ -202,9 +202,9 @@ class DaemonWS(RPCWS):
     data = await self.send(method=methods.ExtractKeyFromAddress, params=params.to_dict())
     return data
   
-  async def createMinerWork(self, params: classes.CreateMinerWorkParams):
-    data = await self.send(method=methods.CreateMinerWork, params=params.to_dict())
-    return classes.CreateMinerWorkResult.from_dict(data)
+  async def getMinerWork(self, params: classes.GetMinerWorkParams):
+    data = await self.send(method=methods.GetMinerWork, params=params.to_dict())
+    return classes.GetMinerWorkResult.from_dict(data)
   
   async def onNewBlock(self):
     result = await self.listenEvent(events.NewBlock)
